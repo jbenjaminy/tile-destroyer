@@ -1,0 +1,5 @@
+
+
+{/* <BestScore />
+<Score />
+<Timer /> */}
