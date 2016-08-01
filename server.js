@@ -4,9 +4,7 @@ var bodyParser = require('body-parser');
 var knex = require('knex')({
 	client: 'pg',
     connection: {
-        database: 'fsGame',
-        // user: 'ben',
-        // password: 'thinkful'
+        database: 'fsGame'
     },
 });
 
@@ -14,16 +12,38 @@ var knex = require('knex')({
 var jsonParser = bodyParser.json();
 var app = express();
 
-/*----------- USER ENDPOINTS ----------*/
+/* ----------- USER ENDPOINTS ---------- */
 app.post('/users', jsonParser, function(request, response) {
 
     knex.insert({
         name: request.body.username
-    }).into('users').then();
+    }).into('users');
+
+    return response.json();
 });
 
-app.post('/:user/games', jsonParser, function(request, response) {
+app.post('/:userId/games', jsonParser, function(request, response) {
 
+    knex.insert({
+        user_id: request.params.userId,
+        score: request.body.score
+    }).into('games');
+
+    return response.json();
+});
+
+app.get('/users', jsonParser, function(request, response) {
+
+    knex.select().table('users');
+
+    return response.json();
+});
+
+app.get('/:userId/games', jsonParser, function(request, response) {
+
+    knex('games').where('user_id', request.params.userId).select('score');
+
+    return response.json();
 });
 
 
