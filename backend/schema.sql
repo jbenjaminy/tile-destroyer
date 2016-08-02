@@ -1,6 +1,6 @@
 create table if not exists users (
 	id serial primary key,
-	username text not null
+	username text not null unique
 );
 
 create table if not exists games (
