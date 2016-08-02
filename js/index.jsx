@@ -7,7 +7,7 @@ var actions = require( './actions' );
 var GameContainer = require( './game-container' );
 
 document.addEventListener( 'DOMContentLoaded', function() {
-  store.dispatch( actions.newGame() );
+//  store.dispatch( actions.newGame() );
   ReactDOM.render(
     <Provider store={store}>
     <GameContainer/>

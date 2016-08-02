@@ -2,7 +2,7 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var connect = require('require-redux').connect;
+var connect = require('react-redux').connect;
 
 // var startButton = require('./start-button');
 // var usernamePrompt = require('./username-prompt');
@@ -12,17 +12,19 @@ var TextContainer = require('./text-container');
 
 var GameContainer = React.createClass( {
   render: function() {
-    return {
+    return (
       <div>
-        <header>
-          <h1>Shoot the Tiles</h1>
-        </header>
-        <BoardContainer />
+        <div>
+          <header>
+            <h1>Shoot the Tiles</h1>
+          </header>
+          <BoardContainer />
+        </div>
+        <div className="info-board">
+          <TextContainer />
+        </div>
       </div>
-      <div className="info-board">
-        <TextContainer />
-      </div>
-    };
+    );
   }
 });
 
