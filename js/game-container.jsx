@@ -3,10 +3,10 @@
 var React = require('react');
 var connect = require('require-redux').connect;
 
-var startButton = require('./start-button');
-var usernamePrompt = require('./username-prompt');
-var scoreFeedback = require('./score-feedback');
-var BoardContainer = require('./board-container')
+// var startButton = require('./start-button');
+// var usernamePrompt = require('./username-prompt');
+// var scoreFeedback = require('./score-feedback');
+var BoardContainer = require('./board-container');
 
 var GameContainer = React.createClass( {
   render: function() {
