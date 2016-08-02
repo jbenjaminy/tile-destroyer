@@ -2,12 +2,12 @@
   "name": "fullstack-game-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "js/index.jsx",
+  "main": "server.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register test/**/*.js*",
     "mkdir": "mkdir -p build",
     "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
-    "serve": "http-server build/",
+    "serve": "node server.js",
     "watch": "npm run watch:html & npm run watch:css & npm run watch:js",
     "clean": "rm -rf build",
     "build:html": "npm run clean:html && cp index.html build/",
@@ -28,8 +28,11 @@
   },
   "author": "",
   "license": "ISC",
-
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "knex": "^0.11.9",
+    "pg": "^6.0.3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
