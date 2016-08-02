@@ -1,19 +1,23 @@
 var React = require('react');
 var connect = require('react-redux').connect;
-var TileContainer = require('./tile-container');
+var Tile = require('./tile');
 
 var Board = React.createClass({
 
 	render: function() {
-		var tileContainerArray = [];
+		var rowArray = [];
 		// 5 would be the initial state. Adjust depending on difficulty setting.
 		for (var i = 0; i < 5; i++) {
-			tileContainerArray.push(<TileContainer />);
+			var tileArray = [];
+			for (var j = 0; j < 5; j++) {
+				tileArray.push(<Tile row={i} col={j} />)
+			}
+			rowArray.push(<tr>{tileArray}</tr>)
 		}
 
 		return (
 			<table>
-				{tileContainerArray}
+				{rowArray}
 			</table>
 		);
 	}
@@ -21,4 +25,4 @@ var Board = React.createClass({
 });
 
 
-module.exports = TileContainer;
+module.exports = Board;
