@@ -1,21 +1,19 @@
 var React = require('react');
 var connect = require('react-redux').connect;
-var ActiveTile = require('./active-tile');
-var InactiveTile = require('./inactive-tile');
+var Tile = require('./tile');
 
 var TileContainer = React.createClass({
 
-	onTileClick: function(event) {
-		event.preventDefault();
+	onTileClick: function() {
 		// dispatches action, reducer adjusts score accordingly
-		// this.props.incrementScore(1);
-		// this.props.decrementScore(1);
+		// this.props.incrementScore(1)  <=== If Tile's class background color is red
+		// this.props.decrementScore(1); <=== If Tile's class background color is white
 	},
 	render: function() {
 		var tileArray = [];
 		// 5 would be the initial state. Adjust depending on difficulty setting.
 		for (var i = 0; i < 5; i++) {
-			tileArray.push(<Tile onTileClick={this.onTileClick}/>)
+			tileArray.push(<Tile onTileClick={this.onTileClick} />)
 		}
 
 		return (

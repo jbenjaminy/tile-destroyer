@@ -7,9 +7,7 @@ var BoardContainer = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<table>
 					<Board />
-				</table>
 			</div>
 		);
 	}
