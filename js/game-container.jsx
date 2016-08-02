@@ -7,6 +7,7 @@ var connect = require('require-redux').connect;
 // var usernamePrompt = require('./username-prompt');
 // var scoreFeedback = require('./score-feedback');
 var BoardContainer = require('./board-container');
+var TextContainer = require('./text-container');
 
 var GameContainer = React.createClass( {
   render: function() {

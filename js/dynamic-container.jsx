@@ -3,9 +3,9 @@
 var React = require('react');
 var connect = require('require-redux').connect;
 
-var startButton = require('./start-button');
-var usernamePrompt = require('./username-prompt');
-var scoreFeedback = require('./score-feedback');
+var StartButton = require('./start-button');
+var UsernamePrompt = require('./username-prompt');
+var ScoreFeedback = require('./score-feedback');
 
 var DynamicContainer = React.createClass( {
   render: function() {
