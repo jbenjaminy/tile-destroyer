@@ -7,20 +7,31 @@ var connect = require('require-redux').connect;
 // var startButton = require('./start-button');
 // var usernamePrompt = require('./username-prompt');
 // var scoreFeedback = require('./score-feedback');
-var BoardContainer = require('./board-container');
+var Board = require('./board');
 var TextContainer = require('./text-container');
 
 var GameContainer = React.createClass( {
+
+  toggleOverlay: function() {
+    this.props.dispatch( actions.toggleOverlay() );
+  };
+
   render: function() {
     return {
       <div>
-        <header>
           <h1>Shoot the Tiles</h1>
-        </header>
-        <BoardContainer />
+      </div>
+      <div>
+        <Board />
       </div>
       <div className="info-board">
         <TextContainer />
+      </div>
+      <div>
+        <DynamicContainer />
+      </div>
+      <div>
+        <OverlayContainer onClick={this.toggleOverlay} showInstructions={this.props.overlay}/>
       </div>
     };
   }
@@ -28,7 +39,14 @@ var GameContainer = React.createClass( {
 
 var mapStateToProps = function(state, props) {
   return {
-    games: state
+    text: state,
+    // timer, score, etc
+    board: state,
+    // dimentions of board
+    overlay: state
+    // showing of instructions
+    //
+    // mapStateToProps also in tilecontainer for susbstate "tile"
   };
 };
 
