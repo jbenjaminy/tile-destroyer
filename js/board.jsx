@@ -1,36 +1,23 @@
 var React = require('react');
 var connect = require('react-redux').connect;
-
 var TileContainer = require('./tile-container');
 
 var Board = React.createClass({
-	onTileClick: function(event) {
-		event.preventDefault();
-		// dispatches action, reducer adjusts score accordingly
-	},
+
 	render: function() {
+		var tileContainerArray = [];
+
+		for (var i = 0; i < 6; i++) {
+			tileContainerArray.push(<TileContainer onTileClick={this.onTileClick} />);
+		}
+
 		return (
-					<td>
-						<TileContainer onTileClick={this.onTileClick} />
-					</td>
-					<td>
-						<TileContainer onTileClick={this.onTileClick} />
-					</td>
-					<td>
-						<TileContainer onTileClick={this.onTileClick} />
-					</td>
-					<td>
-						<TileContainer onTileClick={this.onTileClick} />
-					</td>	
-					<td>
-						<TileContainer onTileClick={this.onTileClick} />
-					</td>
-					<td>
-						<TileContainer onTileClick={this.onTileClick} />
-					</td>				
+			<table>
+				{tile_container_array}
+			</table>
 		);
 	}
+	
 });
-
 
 module.exports = TileContainer;

@@ -1,3 +1,5 @@
+// do we really need a board-container?
+
 var React = require('react');
 var connect = require('react-redux').connect;
 var Board = require('./board');
