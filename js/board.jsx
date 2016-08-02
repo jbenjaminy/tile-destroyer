@@ -6,21 +6,14 @@ var Board = React.createClass({
 
 	render: function() {
 		var tileContainerArray = [];
-
-		for (var i = 0; i < {this.props.columns); i++) {
-			tileContainerArray.push(<ColumnContainer onTileClick={this.onTileClick} id=i />);
+		// 5 would be the initial state. Adjust depending on difficulty setting.
+		for (var i = 0; i < 5; i++) {
+			tileContainerArray.push(<TileContainer />);
 		}
-
-
 
 		return (
 			<table>
 				{tileContainerArray}
-				<tr>
-					<td>active</td>
-					<td>inactive</td>
-					<td>active</td>
-				</tr>
 			</table>
 		);
 	}

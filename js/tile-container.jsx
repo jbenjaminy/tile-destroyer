@@ -4,14 +4,7 @@ var ActiveTile = require('./active-tile');
 var InactiveTile = require('./inactive-tile');
 
 var TileContainer = React.createClass({
-1-1 1-2 1-3
-tileArray = []
-// two loops pushing both inactive and active, set ids {id for columns}
-	getInitialState: function() {
-		return (
-		// initial state of tiles
-		);
-	},
+
 	onTileClick: function(event) {
 		event.preventDefault();
 		// dispatches action, reducer adjusts score accordingly
@@ -19,11 +12,16 @@ tileArray = []
 		// this.props.decrementScore(1);
 	},
 	render: function() {
+		var tileArray = [];
+		// 5 would be the initial state. Adjust depending on difficulty setting.
+		for (var i = 0; i < 5; i++) {
+			tileArray.push(<Tile onTileClick={this.onTileClick}/>)
+		}
+
 		return (
 			<tr>
-				<td>{tile}</td>
+			{tileArray}
 			</tr>
-			// rows and cells returned here
 		);
 	}
 
