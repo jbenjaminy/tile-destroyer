@@ -4,7 +4,9 @@ var ActiveTile = require('./active-tile');
 var InactiveTile = require('./inactive-tile');
 
 var TileContainer = React.createClass({
-
+1-1 1-2 1-3
+tileArray = []
+// two loops pushing both inactive and active, set ids {id for columns}
 	getInitialState: function() {
 		return (
 		// initial state of tiles
@@ -18,6 +20,9 @@ var TileContainer = React.createClass({
 	},
 	render: function() {
 		return (
+			<tr>
+				<td>{tile}</td>
+			</tr>
 			// rows and cells returned here
 		);
 	}
