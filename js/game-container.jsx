@@ -1,6 +1,7 @@
 // Entry point for the game application
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var connect = require('require-redux').connect;
 
 // var startButton = require('./start-button');
