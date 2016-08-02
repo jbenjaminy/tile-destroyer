@@ -8,9 +8,13 @@ var UsernamePrompt = require('./username-prompt');
 var ScoreFeedback = require('./score-feedback');
 
 var DynamicContainer = React.createClass( {
+
+  //Render based on state in Store
   render: function() {
     return {
       <div>
+
+      <h3>Enter your name and press PLAY to begin.</h3>
         <p>
           <UsernamePrompt />
         </p>

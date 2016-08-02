@@ -8,7 +8,7 @@ var BestScore = React.createClass( {
   render: function() {
     return (
       <div>
-        {/* <p>Your score: </p> + {this.props.BestScore} */}
+        <p>High score: </p> + {this.props.highscore}
       </div>
     );
   }

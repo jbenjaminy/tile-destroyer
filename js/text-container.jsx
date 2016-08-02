@@ -1,3 +1,4 @@
+
 var React = require('react');
 var connect = require('require-redux').connect;
 
@@ -9,9 +10,10 @@ var TextContainer = React.createClass({
   render: function() {
     return (
       <div>
-        <p><BestScore /></p>
-        <p><Score /></p>
+        <p><BestScore highscore="50"/></p>
+        <p><Score score="20"/></p>
         <p><Timer /></p>
+        <button id="game-history">Game History</button>
       </div>
     );
   }
