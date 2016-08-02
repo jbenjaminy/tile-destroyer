@@ -1,6 +1,7 @@
 /* --------- DEPENDENCIES --------- */
 var express = require('express');
 var bodyParser = require('body-parser');
+
 var knex = require('knex')({
     client: 'pg',
     connection: {
@@ -17,9 +18,10 @@ app.post('/users', jsonParser, function(request, response) {
 
     knex.insert({
         name: request.body.username
-    }).into('users').then();
+    }).into('users').then(function() {
+        return response.status(201).json();
+    });
 
-    return response.json();
 });
 
 app.post('/:userId/games', jsonParser, function(request, response) {
@@ -27,18 +29,19 @@ app.post('/:userId/games', jsonParser, function(request, response) {
     knex.insert({
         user_id: request.params.userId,
         score: request.body.score
-    }).into('games').then();
-
-    return response.json();
+    }).into('games').then(function() {
+        return response.status(201).json();
+    });
+    
 });
 
 app.get('/users', jsonParser, function(request, response) {
 
     knex.select().from('users').then(function(users) {
         console.log(users);
+        return response.json(users);
     });
 
-    return response.json(users);
 });
 
 app.get('/:userId/games', jsonParser, function(request, response) {
@@ -47,9 +50,9 @@ app.get('/:userId/games', jsonParser, function(request, response) {
         user_id: request.params.userId
     }).then(function(scores) {
         console.log(scores);
+        return response.json(scores);
     });
 
-    return response.json();
 });
 
 
