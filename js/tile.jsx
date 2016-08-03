@@ -22,23 +22,25 @@ var Tile = React.createClass({
 	},
 
 	makeActive: function() {
+		var that = this;
 		// set state display to active
 		this.setState({
 			tileDisplay: 'active'
 		})
 		// setTimeout() : call this.makeInactive after ~ 1 sec
-		setTimeout(function() {this.makeInactive();}, 1000);
+		setTimeout(function() {that.makeInactive();}, 1000);
 	},
 
 	makeInactive: function() {
-		// generates random number 
+		// generates random number
 		var randomSeconds = Math.ceil((Math.random() * 10 + 3) * 1000);
 		// set state display to inactive
 		this.setState({
 			tileDisplay: 'inactive'
 		})
+		var that=this;
 		// setTimeout() : call this.makeActive after RANDOM sec
-		setTimeout(function() {this.makeActive();}, randomSeconds)
+		setTimeout(function() {that.makeActive();}, randomSeconds)
 	},
 
 	componentWillMount: function() {
@@ -46,20 +48,20 @@ var Tile = React.createClass({
 	},
 
 	render: function() {
-
+		console.log('inside of tile ');
 		return (
-			<td className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></td>
+			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></li>
 		);
 	}
 
 });
-
-// var mapStateToProps = function(state, props) {
-// 	return {
-// 		tile: state
-// 	}
-// };
-var Container = connect()(Tile);
+// 	{/*<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></li>*/}
+var mapStateToProps = function(state, props) {
+	return {
+		state: state
+	}
+};
+var Container = connect(mapStateToProps)(Tile);
 
 exports.Tile = Tile;
 exports.Container = Container;
