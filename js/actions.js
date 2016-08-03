@@ -59,12 +59,12 @@ var fetchAddUser = function(username) {
             var message = data.message;
             return dispatch(
                 // later we need to make this return 'id' as well
-                fetchAddUserSuccess(username, message);
+                fetchAddUserSuccess(username, message)
             );
         })
         .catch(function(error) {
             return dispatch(
-                fetchAddUserError(username, error);
+                fetchAddUserError(username, error)
             );
         });
     }
@@ -114,7 +114,7 @@ var fetchAddScore = function(userId, score) {
             var message = data.message;
             return dispatch(
                 // later we need to make this return 'id' as well
-                fetchAddScoreSuccess(userId, score, message);
+                fetchAddScoreSuccess(userId, score, message)
             );
         })
         .catch(function(error) {
@@ -165,7 +165,7 @@ var fetchGameHistory = function(username) {
         .then(function(scores) {
             return dispatch(
                 // later we need to make this return 'id' as well
-                fetchGameHistorySuccess(username, scores);
+                fetchGameHistorySuccess(username, scores)
             );
         })
         .catch(function(error) {
@@ -215,7 +215,7 @@ var fetchHighScore = function(username) {
             var highScore = data.score;
             return dispatch(
                 // later we need to make this return 'id' as well
-                fetchHighScoreSuccess(username, highScore);
+                fetchHighScoreSuccess(username, highScore)
             );
         })
         .catch(function(error) {
