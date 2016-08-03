@@ -18,6 +18,13 @@ var initialState = {
 	score: 0
 };
 
+//This is for a newGame action
+//reset to initial state
+// game.props.score=0;
+// timer.props.count=15;
+// // Lay new tiles
+
+
 var gameReducer = function(state, action) {
   state = state || initialState;
 	switch (action.type)  {
@@ -69,7 +76,7 @@ var gameReducer = function(state, action) {
 
 //   if (action.type === actions.INCREMENT_SCORE) (
 //     return {
-      
+
 //     }
 //   )
 

@@ -22,19 +22,12 @@ var GameContainer = React.createClass( {
         <div className="info-board">
           <TextContainer />
         </div>
-          <DynamicContainer />
-          <OverlayContainer onClick={this.manageOverlay} showInstructions={this.props.overlay}/>
+          <BeforeContainer />
+          <OverlayContainer manageOverlay={this.manageOverlay} />
       </div>
     );
   }
 });
 
-var mapStateToProps = function(state, props) {
-  return {
-    overlay: state.overlay
-    // TODO: WRITE THIS INTO REDUCER
-    };
-};
-var Container = connect(mapStateToProps)(GameContainer);
-
+var Container = connect()(GameContainer);
 module.exports = Container;

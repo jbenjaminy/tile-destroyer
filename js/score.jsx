@@ -1,16 +1,23 @@
 // Keeps current score for the player during game.
-
 var React = require( 'react' );
+var connect = require('react-redux').connect;
 
 var Score = React.createClass( {
 
   render: function() {
     return (
       <div>
-        <p>Your score: </p> + {props.score}
+        <p>Your score: {this.props.score}</p> 
       </div>
     );
   }
 });
 
-module.exports = Score;
+var mapStateToProps = function(state, props) {
+  return {
+    score: state.score
+  };
+};
+
+var Container = connect(mapStateToProps)(Score);
+module.exports = Container;;
