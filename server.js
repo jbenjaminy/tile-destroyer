@@ -14,6 +14,8 @@ var jsonParser = bodyParser.json();
 var app = express();
 
 /* ----------- USER ENDPOINTS ---------- */
+
+// POST NEW USERS
 app.post('/users', jsonParser, function(request, response) {
     var username = request.body.username.trim();
 
@@ -43,16 +45,16 @@ app.post('/users', jsonParser, function(request, response) {
         });
 });
 
-
+// POST NEW SCORES BY USER ID
 app.post('/games/:userId', jsonParser, function(request, response) {
-    var user_id = parseInt(request.params.userId);
+    var userId = parseInt(request.params.userId);
     var score = parseInt(request.body.score);
 
-    knex.insert({user_id: user_id, score: score})
+    knex.insert({user_id: userId, score: score})
         .into('games')
         .then(function() {
             return response.status(201).json({
-                user_id,
+                userId,
                 score, 
                 message: 'Score saved successfully'
             });
@@ -62,21 +64,7 @@ app.post('/games/:userId', jsonParser, function(request, response) {
         });
 });
 
-
-// TODO: DELETE THIS ENDPOINT AFTER TESTING
-app.get('/users', jsonParser, function(request, response) {
-
-    knex.select()
-        .from('users')
-        .then(function(users) {
-            return response.json(users);
-        })
-        .catch(function(error) {
-            return response.sendStatus(500);
-        });
-});
-
-
+// GET GAME HISTORY BY USERNAME
 app.get('/games/:username', jsonParser, function(request, response) {
     var username = request.params.username;
 
@@ -102,7 +90,7 @@ app.get('/games/:username', jsonParser, function(request, response) {
         });
 });
 
-
+// GET HIGH SCORE BY USERNAME
 app.get('/games/:username/highscore', jsonParser, function(request, response) {
     var username = request.params.username;
 
@@ -130,7 +118,21 @@ app.get('/games/:username/highscore', jsonParser, function(request, response) {
         });
 });
 
+// TODO: DELETE THESE ENDPOINTS AFTER TESTING
+// GET USERS
+app.get('/users', jsonParser, function(request, response) {
 
+    knex.select()
+        .from('users')
+        .then(function(users) {
+            return response.json(users);
+        })
+        .catch(function(error) {
+            return response.sendStatus(500);
+        });
+});
+
+// DELETE USER BY USER ID
 app.delete('/users/:userId', jsonParser, function(request, response) {
     var id = request.params.userId;
 
@@ -148,7 +150,7 @@ app.delete('/users/:userId', jsonParser, function(request, response) {
         });
 });
 
-
+// DELETE GAME HISTORY BY USER ID
 app.delete('/games/:userId', jsonParser, function(request, response) {
     var user_id = request.params.userId;
 

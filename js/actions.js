@@ -35,148 +35,210 @@ var decrementScore = function() {
 /*---------- FETCH ACTIONS ---------*/
 
 // POST NEW USER
-var fetchAddUser = function() {
+var fetchAddUser = function(username) {
     return function(dispatch) {
-        var url = 'localhost:8080/games'
-        return fetch(url, {
-                    method: 'post',
-                    body: JSON.stringify({
-                            numGuesses: lastGame
-                        })
-    }).then(function(response) {
-            return response.json();
-        }).then(function(data) {
-            var lastGame = data
+        var url = 'localhost:8080/users';
+        var request = {
+            method: 'post',
+            body: JSON.stringify(
+                {username: username}
+            )};
+        return fetch(url, request)
+        .then(function(response) {
+            if (response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then(function(response) {
+            return response.status(201).json();
+        })
+        .then(function(data) {
+            var message = data.message;
             return dispatch(
-                fetchPostGameSuccess(lastGame)
+                // later we need to make this return 'id' as well
+                fetchAddUserSuccess(username, message);
+            );
+        })
+        .catch(function(error) {
+            return dispatch(
+                fetchAddUserError(username, error);
             );
         });
     }
 };
 
 var FETCH_ADD_USER_SUCCESS = 'FETCH_ADD_USER_SUCCESS';
-var fetchAddUserSuccess = function(userName) {
+var fetchAddUserSuccess = function(username, message) {
     return {
         type: FETCH_ADD_USER_SUCCESS,
-        userName: userName
+        username: username,
+        message: message
     };
 };
 
 var FETCH_ADD_USER_ERROR = 'FETCH_ADD_USER_ERROR';
-var fetchAddUserError = function(userName, error) {
+var fetchAddUserError = function(username, error) {
     return {
         type: FETCH_ADD_USER_ERROR,
-        userName: userName,
+        username: username,
         error: error
     };
 };
 
 
 // POST NEW SCORE
-var fetchAddScore = function() {
+var fetchAddScore = function(userId, score) {
     return function(dispatch) {
-        var url = 'localhost:8080/games'
-        return fetch(url, {
-                    method: 'post',
-                    body: JSON.stringify({
-                            numGuesses: lastGame
-                        })
-    }).then(function(response) {
-            return response.json();
-        }).then(function(data) {
-            var lastGame = data
+        var url = 'localhost:8080/games/' + userId;
+        var request = {
+            method: 'post',
+            body: JSON.stringify(
+                {score: score}
+            )};
+        return fetch(url, request)
+        .then(function(response) {
+            if (response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then(function(response) {
+            return response.status(201).json();
+        })
+        .then(function(data) {
+            var message = data.message;
             return dispatch(
-                fetchPostGameSuccess(lastGame)
+                // later we need to make this return 'id' as well
+                fetchAddScoreSuccess(userId, score, message);
+            );
+        })
+        .catch(function(error) {
+            return dispatch(
+                fetchAddScoreError(userId, score, error)
             );
         });
     }
 };
 
 var FETCH_ADD_SCORE_SUCCESS = 'FETCH_ADD_SCORE_SUCCESS';
-var fetchAddScoreSuccess = function(userID, score) {
+var fetchAddScoreSuccess = function(userId, score, message) {
     return {
         type: FETCH_ADD_SCORE_SUCCESS,
-        userID: userID,
-        score: score
+        id: userId,
+        score: score,
+        message: message
     };
 };
 
 var FETCH_ADD_SCORE_ERROR = 'FETCH_ADD_SCORE_ERROR';
-var fetchAddScoreError = function(userID, error) {
+var fetchAddScoreError = function(userId, score, error) {
     return {
         type: FETCH_ADD_SCORE_ERROR,
-        userID: userID,
+        id: userId,
+        score: score,
         error: error
     };
 };
 
 
 // GET GAME HISTORY
-var fetchAddUser = function() {
-  console.log('here, bestgame');
+var fetchGameHistory = function(username) {
     return function(dispatch) {
-        var url = 'localhost:8080/games/best'
-        return fetch(url, {
-                    method: 'get'
-    }).then(function(response) {
-        console.log(response, 'get response');
+        var url = 'localhost:8080/games/' + username;
+        return fetch(url)
+        .then(function(response) {
+            if (response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then(function(response) {
             return response.json();
-        }).then(function(data) {
-            var bestGame = data
+        })
+        .then(function(scores) {
             return dispatch(
-                fetchBestGameSuccess(lastGame)
+                // later we need to make this return 'id' as well
+                fetchGameHistorySuccess(username, scores);
+            );
+        })
+        .catch(function(error) {
+            return dispatch(
+                fetchGameHistoryError(username, error)
             );
         });
     }
 };
 
-var FETCH_GET_HISTORY_SUCCESS = 'FETCH_GET_HISTORY_SUCCESS';
-var fetchGetHistorySuccess = function(userName) {
+var FETCH_GAME_HISTORY_SUCCESS = 'FETCH_GAME_HISTORY_SUCCESS';
+var fetchGameHistorySuccess = function(username, scores) {
     return {
-        type: FETCH_GET_HISTORY_SUCCESS,
-        userName: userName
+        type: FETCH_GAME_HISTORY_SUCCESS,
+        userName: userName,
+        scores: scores
     };
 };
 
-var FETCH_GET_HISTORY_ERROR = 'FETCH_GET_HISTORY_ERROR';
-var fetchGetHistoryError = function(userName) {
+var FETCH_GAME_HISTORY_ERROR = 'FETCH_GAME_HISTORY_ERROR';
+var fetchGameHistoryError = function(username, error) {
     return {
-        type: FETCH_GET_HISTORY_ERROR,
-        userName: userName,
+        type: FETCH_GAME_HISTORY_ERROR,
+        username: username,
+        error: error
     };
 };
 
 
 // GET HIGH SCORE
-var fetchGetHighScore = function(username) {
+var fetchHighScore = function(username) {
     return function(dispatch) {
-        var url = 'localhost:8080/games/' + username + '/highscore'
-        return fetch(url, {
-                    method: 'get'
-    }).then(function(response) {
+        var url = 'localhost:8080/games/' + username + '/highscore';
+        return fetch(url)
+        .then(function(response) {
+            if (response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then(function(response) {
             return response.json();
-        }).then(function(data) {
-            var bestGame = data
+        })
+        .then(function(data) {
+            var highScore = data.score;
             return dispatch(
-                fetchBestGameSuccess(lastGame)
+                // later we need to make this return 'id' as well
+                fetchHighScoreSuccess(username, highScore);
+            );
+        })
+        .catch(function(error) {
+            return dispatch(
+                fetchHighScoreError(username, error)
             );
         });
     }
 };
 
-var FETCH_GET_HIGH_SCORE_SUCCESS = 'FETCH_GET_HIGH_SCORE_SUCCESS';
-var fetchGetHighScoreSuccess = function(username, highScore) {
+var FETCH_HIGH_SCORE_SUCCESS = 'FETCH_HIGH_SCORE_SUCCESS';
+var fetchHighScoreSuccess = function(username, highScore) {
     return {
-        type: FETCH_GET_HIGHSCORE_SUCCESS,
+        type: FETCH_HIGH_SCORE_SUCCESS,
         username: username,
         highScore: highScore
     };
 };
 
-var FETCH_GET_HIGH_SCORE_ERROR = 'FETCH_GET_HIGH_SCORE_ERROR';
-var fetchGetHighScoreError = function(username, error) {
+var FETCH_HIGH_SCORE_ERROR = 'FETCH_HIGH_SCORE_ERROR';
+var fetchHighScoreError = function(username, error) {
     return {
-        type: FETCH_GET_HIGHSCORE_ERROR,
+        type: FETCH_HIGH_SCORE_ERROR,
         username: username,
         error: error
     };
@@ -206,12 +268,12 @@ exports.FETCH_ADD_SCORE_ERROR = FETCH_ADD_SCORE_ERROR;
 exports.fetchAddScoreSuccess = fetchAddScoreSuccess;
 exports.fetchAddScoreError = fetchAddScoreError;
 
-exports.FETCH_GET_HISTORY_SUCCESS = FETCH_GET_HISTORY_SUCCESS;
-exports.FETCH_GET_HISTORY_ERROR = FETCH_GET_HISTORY_ERROR;
-exports.fetchGetHistorySuccess = fetchGetHistorySuccess;
-exports.fetchGetHistoryError  = fetchGetHistoryError ;
+exports.FETCH_GAME_HISTORY_SUCCESS = FETCH_GAME_HISTORY_SUCCESS;
+exports.FETCH_GAME_HISTORY_ERROR = FETCH_GAME_HISTORY_ERROR;
+exports.fetchGameHistorySuccess = fetchGameHistorySuccess;
+exports.fetchGameHistoryError  = fetchGameHistoryError ;
 
-exports.FETCH_GET_HIGH_SCORE_SUCCESS = FETCH_GET_HIGH_SCORE_SUCCESS;
-exports.FETCH_GET_HIGH_SCORE_ERROR = FETCH_GET_HIGH_SCORE_ERROR;
-exports.fetchGetHighScoreSuccess = fetchGetHighScoreSuccess ;
-exports.fetchGetHighScoreError = fetchGetHighScoreError;
+exports.FETCH_HIGH_SCORE_SUCCESS = FETCH_HIGH_SCORE_SUCCESS;
+exports.FETCH_HIGH_SCORE_ERROR = FETCH_HIGH_SCORE_ERROR;
+exports.fetchHighScoreSuccess = fetchHighScoreSuccess ;
+exports.fetchHighScoreError = fetchHighScoreError;
