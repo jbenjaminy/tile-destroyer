@@ -1,0 +1,13 @@
+.tile {
+	border: 2px solid black;
+	height: 100;
+	width: 100;
+}
+
+.tile.inactive {
+	background: white;
+}
+
+.tile.active {
+	background: red;
+}
