@@ -30,7 +30,7 @@ var decrementScore = function() {
 var FETCH_ADD_USER_SUCCESS = 'FETCH_ADD_USER_SUCCESS';
 var fetchAddUserSuccess = function(userName) {
     return {
-        type: ADD_USER_SUCCESS,
+        type: FETCH_ADD_USER_SUCCESS,
         userName: userName
     };
 };
@@ -38,7 +38,7 @@ var fetchAddUserSuccess = function(userName) {
 var FETCH_ADD_USER_ERROR = 'FETCH_ADD_USER_ERROR';
 var fetchAddUserError = function(userName, error) {
     return {
-        type: ADD_USER_ERROR,
+        type: FETCH_ADD_USER_ERROR,
         userName: userName,
         error: error
     };
@@ -48,7 +48,7 @@ var fetchAddUserError = function(userName, error) {
 var FETCH_ADD_SCORE_SUCCESS = 'FETCH_ADD_SCORE_SUCCESS';
 var fetchAddScoreSuccess = function(userID, score) {
     return {
-        type: ADD_SCORE_SUCCESS,
+        type: FETCH_ADD_SCORE_SUCCESS,
         userID: userID,
         score: score
     };
@@ -57,7 +57,7 @@ var fetchAddScoreSuccess = function(userID, score) {
 var FETCH_ADD_SCORE_ERROR = 'FETCH_ADD_SCORE_ERROR';
 var fetchAddScoreError = function(userID, error) {
     return {
-        type: ADD_SCORE_ERROR,
+        type: FETCH_ADD_SCORE_ERROR,
         userID: userID,
         error: error
     };
