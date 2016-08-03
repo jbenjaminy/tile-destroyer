@@ -9,12 +9,11 @@ var Score = React.createClass( {
   render: function() {
     return (
       <div>
-        <p>Your score: </p> + {props.score}
+        {/* <p>Your score: </p> + {this.props.score} */}
       </div>
     );
   }
 });
-
 
 var Container = connect()(Score);
 

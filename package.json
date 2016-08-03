@@ -13,9 +13,9 @@
     "build:html": "npm run clean:html && cp index.html build/",
     "watch:html": "npm run build:html && chokidar index.html -c 'npm run build:html'",
     "clean:html": "rm -f build/index.html",
-    "build:css": "npm run clean:css && cp style.css build/",
+    "build:css": "npm run clean:css && cp css/style.css build/",
     "clean:css": "rm -f build/style.css",
-    "watch:css": "npm run build:css && chokidar style.css -c 'npm run build:css'",
+    "watch:css": "npm run build:css && chokidar css/style.css -c 'npm run build:css'",
     "build:js": "npm run clean:js && webpack",
     "watch:js": "npm run build:js && webpack --watch",
     "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map"
@@ -35,7 +35,9 @@
     "pg": "^6.0.3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",

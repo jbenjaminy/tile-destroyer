@@ -1,20 +1,14 @@
+
 var React = require('react');
-var ReactDOM = require('react-dom');
 var connect = require('require-redux').connect;
 
 var OverlayInstructions = require('./overlay-instructions');
 
 var OverlayContainer = React.createClass( {
-  var show = (this.props.showInstructions ? '' : 'hidden');
   render: function() {
     return (
       <div>
-        <div>
-          <button type="button" onClick={this.props.onClick>What?</button>
-        </div>
-        <div className={show}>
-          <OverlayInstructions />
-        </div>
+        <OverlayInstructions />
       </div>
     );
   }

@@ -5,17 +5,11 @@ var connect = require( 'react-redux' ).connect;
 var actions = require( './actions' );
 
 var UsernamePrompt = React.createClass ({
-
-  getName: function(event) {
-    event.preventDefault();
-    var userName = this.refs.userName.value;
-  }
     render: function() {
       return (
         <div>
           <form>
-            <input type="text" placeholder="Player name" id="player-name" required>
-            <input type="submit" id="submit-button" onClick={this.getName}>
+            <input placeholder="Player name" id="player-name"><input type="submit" id="submit-button">
           </form>
         </div>
       );
