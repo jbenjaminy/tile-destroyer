@@ -34,7 +34,8 @@
     "knex": "^0.11.9",
     "pg": "^6.0.3",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
