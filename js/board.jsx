@@ -1,11 +1,11 @@
 var React = require('react');
-var connect = require('react-redux').connect;
 var Tile = require('./tile');
 
 var Board = React.createClass({
 
 	render: function() {
 		var rowArray = [];
+		// this.props.size will pass state to adjust size from game-container
 		// 5 would be the initial state. Adjust depending on difficulty setting (props.difficulty)
 		for (var i = 0; i < 5; i++) {
 			var tileArray = [];

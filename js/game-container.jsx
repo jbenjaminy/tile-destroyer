@@ -4,11 +4,10 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var connect = require('require-redux').connect;
 
-// var startButton = require('./start-button');
-// var usernamePrompt = require('./username-prompt');
-// var scoreFeedback = require('./score-feedback');
 var Board = require('./board');
 var TextContainer = require('./text-container');
+var DynamicContainer = require('./dynamic-container');
+var OverlayContainer = require('./overlay-container');
 
 var GameContainer = React.createClass( {
 
@@ -22,10 +21,10 @@ var GameContainer = React.createClass( {
           <h1>Shoot the Tiles</h1>
       </div>
       <div>
-        <Board />
+        <Board size={this.props.board}/>
       </div>
       <div className="info-board">
-        <TextContainer />
+        <TextContainer text={this.props.text}/>
       </div>
       <div>
         <DynamicContainer />

@@ -1,16 +1,17 @@
 // Upon page load, display user name input field and Game Start button. When game is over, display Final Score and Play Again button
-
 var React = require('react');
-var connect = require('require-redux').connect;
 
 var StartButton = require('./start-button');
 var UsernamePrompt = require('./username-prompt');
-var ScoreFeedback = require('./score-feedback');
 
 var DynamicContainer = React.createClass( {
+
+  //Render based on state in Store
   render: function() {
     return {
       <div>
+
+      <h3>Enter your name and press PLAY to begin.</h3>
         <p>
           <UsernamePrompt />
         </p>
@@ -30,6 +31,4 @@ var DynamicContainer = React.createClass( {
   }
 });
 
-var Container = connect()(DynamicContainer);
-
-module.exports = Container;
+module.exports = DynamicContainer;

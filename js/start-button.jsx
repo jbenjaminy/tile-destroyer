@@ -3,7 +3,7 @@
 var React = require( 'react' );
 var connect = require( 'react-redux' ).connect;
 var actions = require( './actions' );
-
+// DECIDE WHETHER OR NOT TO CONNECT TO PASS USER INPUT TO ACTIONS
 
 // Add event handler to start game
 var StartButton = React.createClass ({

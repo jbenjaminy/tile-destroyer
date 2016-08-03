@@ -1,5 +1,6 @@
 var React = require('react');
 var connect = require('react-redux').connect;
+var actions = require( './actions' );
 
 var Tile = React.createClass({
 
@@ -55,7 +56,7 @@ var Tile = React.createClass({
 
 var mapStateToProps = function(state, props) {
 	return {
-
+		// tile: state
 	}
 };
 

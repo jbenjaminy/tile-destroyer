@@ -1,5 +1,4 @@
 var React = require('react');
-var connect = require('react-redux').connect;
 
 var Timer = require('./timer');
 var Score = require('./score');
