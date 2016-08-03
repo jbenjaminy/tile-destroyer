@@ -7,10 +7,10 @@ var actions = require( './actions' );
 
 // Add event handler to start game
 var StartButton = React.createClass ({
-  //the newGame method should let button communicate up saying that it's been clicked
-  newGame: function() {
+  //the NEW_GAME method should let button communicate up saying that it's been clicked
+  NEW_GAME: function() {
 
-    this.props.dispatch( actions.newGame() );
+    this.props.dispatch( actions.NEW_GAME() );
     // //reset to initial state
     // game.props.score=0;
     // timer.props.count=15;
@@ -19,7 +19,7 @@ var StartButton = React.createClass ({
 
     render: function() {
       return (
-        <button type="button" onClick={this.newGame}>Play Game></button>
+        <button type="button" onClick={this.NEW_GAME}>Play Game></button>
       );
     }
 });

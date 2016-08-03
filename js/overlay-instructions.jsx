@@ -5,7 +5,7 @@ var actions = require( './actions' );
 var OverlayInstructions = React.createClass( {
 
 // toggleOveraly: function() {
-//   this.props.dispatch( actions.toggleOverlay() );
+//   this.props.dispatch( actions.TOGGLE_OVERLAY() );
 // };
 
 render: function() {
