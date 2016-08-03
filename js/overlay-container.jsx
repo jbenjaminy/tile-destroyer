@@ -1,3 +1,4 @@
+// COMPLETE
 var React = require('react');
 
 var OverlayInstructions = require('./overlay-instructions');

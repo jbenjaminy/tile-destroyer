@@ -1,6 +1,6 @@
 var redux = require('redux');
 var thunk = require('redux-thunk').default;
-var reducers = require('./reducers').reducer;
+var reducers = require('./reducers');
 var applyMiddleware = redux.applyMiddleware;
 
 var createStore = redux.createStore;

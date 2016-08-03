@@ -18,7 +18,7 @@ var initialState = {
 	score: 0
 };
 
-var tileReducer = function(state, action) {
+var gameReducer = function(state, action) {
   state = state || initialState;
 	switch (action.type)  {
 		case actions.NEW_GAME:
@@ -73,13 +73,5 @@ var tileReducer = function(state, action) {
 //     }
 //   )
 
-// exports.tileGameReducer = tileGameReducer;
-// 
-// var reducer = combineReducers({
-//   // text: textReducer,
-//   // board: boardReducer,
-//   // overlay: overlayReducer,
-//   tile: tileReducer
-// });
 
-exports.reducer = tileReducer;
+module.exports = gameReducer;
