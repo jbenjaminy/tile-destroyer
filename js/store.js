@@ -1,10 +1,9 @@
-
 var redux = require('redux');
-var createStore = redux.createStore;
-var applyMiddleware = redux.applyMiddleware;
 var thunk = require('redux-thunk').default;
+var reducers = require('./reducers').reducer;
+var applyMiddleware = redux.applyMiddleware;
 
-var reducers = require('./reducers');
+var createStore = redux.createStore;
+var store = createStore(reducers, applyMiddleware(thunk),  window.devToolsExtension && window.devToolsExtension());
 
-var store = createStore(reducers.tileGameReducer, applyMiddleware(thunk));
 module.exports  = store;

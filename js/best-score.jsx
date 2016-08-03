@@ -1,14 +1,14 @@
-var React = require( 'react' );
+// var React = require( 'react' );
 
-var BestScore = React.createClass( {
+// var BestScore = React.createClass( {
 
-  render: function() {
-    return (
-      <div>
-        <p>High score: {this.props.highscore}</p>
-      </div>
-    );
-  }
-});
+//   render: function() {
+//     return (
+//       <div>
+//         <p>High score: {this.props.highscore}</p>
+//       </div>
+//     );
+//   }
+// });
 
-module.exports = BestScore;
+// module.exports = BestScore;

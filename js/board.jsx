@@ -16,9 +16,9 @@ var Board = React.createClass({
 		}
 
 		return (
-			<table>
-				{rowArray}
-			</table>
+				<table>
+					{rowArray}
+				</table>
 		);
 	}
 

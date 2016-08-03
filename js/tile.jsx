@@ -54,10 +54,12 @@ var Tile = React.createClass({
 
 });
 
-var mapStateToProps = function(state, props) {
-	return {
-		// tile: state
-	}
-};
+// var mapStateToProps = function(state, props) {
+// 	return {
+// 		tile: state
+// 	}
+// };
+var Container = connect()(Tile);
 
-module.exports = connect(mapStateToProps)(Tile);
+exports.Tile = Tile;
+exports.Container = Container;
