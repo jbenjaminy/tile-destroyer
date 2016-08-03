@@ -58,7 +58,7 @@ var Tile = React.createClass({
 // 	{/*<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></li>*/}
 var mapStateToProps = function(state, props) {
 	return {
-		state: state
+	 state: state
 	}
 };
 var Container = connect(mapStateToProps)(Tile);
