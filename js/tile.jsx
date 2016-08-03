@@ -59,5 +59,4 @@ var mapStateToProps = function(state, props) {
 	}
 };
 
-
 module.exports = connect(mapStateToProps)(Tile);

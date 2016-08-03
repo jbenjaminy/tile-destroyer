@@ -6,7 +6,7 @@ var Board = React.createClass({
 
 	render: function() {
 		var rowArray = [];
-		// 5 would be the initial state. Adjust depending on difficulty setting.
+		// 5 would be the initial state. Adjust depending on difficulty setting (props.difficulty)
 		for (var i = 0; i < 5; i++) {
 			var tileArray = [];
 			for (var j = 0; j < 5; j++) {
@@ -24,5 +24,12 @@ var Board = React.createClass({
 
 });
 
-
+// var mapStateToProps = function(state, props) {
+// 	return {
+// 		difficulty: state.difficulty
+// 	}
+// }
+//
+// module.exports = connect(mapStateToProps)(Board);
+// 
 module.exports = Board;
