@@ -67,7 +67,7 @@ var fetchAddScoreError = function(userID, error) {
 var FETCH_GET_HISTORY_SUCCESS = 'FETCH_GET_HISTORY_SUCCESS';
 var fetchGetHistorySuccess = function(userName) {
     return {
-        type: GET_HISTORY_SUCCESS,
+        type: FETCH_GET_HISTORY_SUCCESS,
         userName: userName
 
     };
@@ -76,9 +76,8 @@ var fetchGetHistorySuccess = function(userName) {
 var FETCH_GET_HISTORY_ERROR = 'FETCH_GET_HISTORY_ERROR';
 var fetchGetHistoryError = function(userName) {
     return {
-        type: GET_HISTORY_ERROR,
+        type: FETCH_GET_HISTORY_ERROR,
         userName: userName,
-        error: error
     };
 };
 
@@ -86,7 +85,7 @@ var fetchGetHistoryError = function(userName) {
 var FETCH_GET_HIGHSCORE_SUCCESS = 'FETCH_GET_HIGHSCORE_SUCCESS';
 var fetchGetHighScoreSuccess = function(userName) {
     return {
-        type: GET_HIGHSCORE_SUCCESS,
+        type: FETCH_GET_HIGHSCORE_SUCCESS,
         userName: userName
 
     };
@@ -95,9 +94,8 @@ var fetchGetHighScoreSuccess = function(userName) {
 var FETCH_GET_HIGHSCORE_ERROR = 'FETCH_GET_HIGHSCORE_ERROR';
 var fetchGetHighScoreError = function(userName) {
     return {
-        type: GET_HIGHSCORE_ERROR,
+        type: FETCH_GET_HIGHSCORE_ERROR,
         userName: userName,
-        error: error
     };
 };
 
@@ -128,3 +126,8 @@ exports.FETCH_GET_HIGHSCORE_SUCCESS = FETCH_GET_HIGHSCORE_SUCCESS;
 exports.fetchGetHighScoreSuccess = fetchGetHighScoreSuccess ;
 exports.FETCH_GET_HIGHSCORE_ERROR = FETCH_GET_HIGHSCORE_ERROR;
 exports.fetchGetHighScoreError = fetchGetHighScoreError;
+
+exports.INCREMENT_SCORE = INCREMENT_SCORE;
+exports.decrementScore = decrementScore;
+exports.DECREMENT_SCORE = DECREMENT_SCORE;
+exports.incrementScore = incrementScore;

@@ -32,11 +32,40 @@ var tileReducer = function(state, action) {
 		var newScore = state.score--;
 		newState = Object.assign({}, state );
 		newState.score = newScore;
+var initialState = {
+	score: 0
+};
 
-		return newState;
-	} else {
-		return state;
+var tileReducer = function(state, action) {
+  state = state || initialState;
+	switch (action.type)  {
+		case actions.NEW_GAME:
+			return Object.assign({}, state, {
+				score: 0
+			});
+		case actions.INCREMENT_SCORE:
+			return Object.assign({}, state, {
+				score: state.score++
+			});
+		case actions.DECREMENT_SCORE:
+			return Object.assign({}, state, {
+				score: state.score--
+			});
+		default:
+			return state;
 	}
+  	// if (action.type === actions.NEW_GAME) {
+	// 	return Object.assign({}, state, {score: 0 });
+    //
+	// } else if (action.type === actions.INCREMENT_SCORE) {
+	// 	return Object.assign({}, state, {score: state.score++} );
+	//
+	// } else if (action.type === actions.DECREMENT_SCORE) {
+	// 	return Object.assign({}, state, {score: state.score--} );
+    //
+	// } else {
+	// 	return state;
+	// }
 };
 
 
