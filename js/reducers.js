@@ -12,4 +12,4 @@ var reducerFunction = function (state, action) {
 
 
 
-module.exports = reducerFunction;
+exports.reducerFunction = reducerFunction;
