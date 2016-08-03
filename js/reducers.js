@@ -120,11 +120,15 @@ var gameReducer = function(state, action) {
 		} else {
 			return Object.assign({}, state, {overlay: true})
 	}
-	// TODO: Add ADD_USER action to actions 
+	// TODO: CHANGE TO FETCH_ADD_USER_SUCCESS
 	else if (action.type === actions.ADD_USER) {
 		userName = action.username;
 		return Object.assign({}, state, {username: userName})
-	}
+
+		// TODO: ADD STATE UPDATES FOR FETCH_HIGH_SCORE_SUCCESS AND FETCH_GAME_HISTORY SUCCESS
+		// TODO: ADD STATE FOR TIMER
+		// TODO: ADD HIDE/SHOW FOR BEFORE CONTAINER AND AFTER CONTAINER
+	} else
 	return state;
 }
 

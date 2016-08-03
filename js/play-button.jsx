@@ -17,6 +17,8 @@ var PlayButton = React.createClass ({
     );
   }
 });
+// PLAY BUTTON DISPATCHES actions.newGame() (start-timer), reset score, dispatch hideDynamicContainer()
+// TODO: set two classes for before/after containers class ="dynamic hidden"
 
 var Container = connect()(PlayButton);
 module.exports = Container;
