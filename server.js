@@ -161,37 +161,3 @@ var port = process.env.PORT || 8080;
 app.listen(port, function() {
     console.log('Listening on port:' + port);
 });
-
-
-// POST /USERS EXAMPLE:
-    // ENDPOINT: localhost:8080/users
-    // REQUEST BODY:
-        //   {
-        //     "username": "ben"
-        //   }
-
-// POST /GAMES/:USERID EXAMPLE:
-     // ENDPOINT: localhost:8080/games/2
-     // REQUEST BODY:
-        // {
-        // "score": "20"
-        // }
-
-// GET '/GAMES/:USERNAME' EXAMPLE:
-    // ENDPOINT: localhost:8080/games/ben
-    // RESPONSE:
-        // [
-        //   {
-        //     "score": 15
-        //   },
-        // 
-        //   {
-        //     "score": 20
-        //   }
-        // ]
-
-// GET /GAMES/:USERNAME/HIGHSCORE EXAMPLE:
-    // ENDPOINT: localhost:8080/games/ben/highscore
-        //   {
-        //     "score": 20
-        //   }

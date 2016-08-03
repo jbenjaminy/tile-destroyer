@@ -24,6 +24,7 @@ var GameContainer = React.createClass( {
         </div>
           <BeforeContainer />
           <OverlayContainer manageOverlay={this.manageOverlay} />
+          <AfterContainer />
       </div>
     );
   }

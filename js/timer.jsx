@@ -3,6 +3,7 @@
 var React = require('react');
 
 var Timer = React.createClass({
+  // TODO: send fetch dispatches and set after container to showAfterContainer()
 
 // Do not use timer countdown, calltime and render that instead.  You want to change state of timer.
   timer: function() {

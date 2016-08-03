@@ -21,4 +21,5 @@ var BeforeContainer = React.createClass( {
 
 // TODO: RENDER BEFORE GAME(isBeforeGame)/AFTER GAME COMPONENTS(isAfterGame);
 // start game will trigger (isInGame) -- one state
+// PLAY BUTTON DISPATCHES actions.newGame() (start-timer), reset score
 module.exports = BeforeContainer;
