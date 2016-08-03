@@ -33,15 +33,15 @@ var decrementScore = function() {
 
 
 /*---------- FETCH ACTIONS ---------*/
-
+// TODO: NEED DISPATCH WHEN NEW USER SUBMITS USERNAME
 // POST NEW USER
-var fetchAddUser = function(username) {
+var fetchAddUser = function(usernameInput) {
     return function(dispatch) {
         var url = 'localhost:8080/users';
         var request = {
             method: 'post',
             body: JSON.stringify(
-                {username: username}
+                {username: usernameInput}
             )};
         return fetch(url, request)
         .then(function(response) {
@@ -56,39 +56,41 @@ var fetchAddUser = function(username) {
             return response.status(201).json();
         })
         .then(function(data) {
+            var username = data.username;
+            var id = data.id;
             var message = data.message;
             return dispatch(
-                // later we need to make this return 'id' as well
-                fetchAddUserSuccess(username, message)
+                fetchAddUserSuccess(username, id, message)
             );
         })
         .catch(function(error) {
             return dispatch(
-                fetchAddUserError(username, error)
+                fetchAddUserError(usernameInput, error)
             );
         });
     }
 };
-
+// TODO: NEED TO STORE USERNAME AND ID IN REDUCER AS STATE
 var FETCH_ADD_USER_SUCCESS = 'FETCH_ADD_USER_SUCCESS';
-var fetchAddUserSuccess = function(username, message) {
+var fetchAddUserSuccess = function(username, id, message) {
     return {
         type: FETCH_ADD_USER_SUCCESS,
         username: username,
+        id: id,
         message: message
     };
 };
 
 var FETCH_ADD_USER_ERROR = 'FETCH_ADD_USER_ERROR';
-var fetchAddUserError = function(username, error) {
+var fetchAddUserError = function(usernameInput, error) {
     return {
         type: FETCH_ADD_USER_ERROR,
-        username: username,
+        username: usernameInput,
         error: error
     };
 };
 
-
+// TODO: NEED DISPATCH AFTER EVERY GAME
 // POST NEW SCORE
 var fetchAddScore = function(userId, score) {
     return function(dispatch) {
@@ -113,7 +115,6 @@ var fetchAddScore = function(userId, score) {
         .then(function(data) {
             var message = data.message;
             return dispatch(
-                // later we need to make this return 'id' as well
                 fetchAddScoreSuccess(userId, score, message)
             );
         })
@@ -145,7 +146,7 @@ var fetchAddScoreError = function(userId, score, error) {
     };
 };
 
-
+// TODO: DISPATCH FOR ON-CLICK ON VIEW GAME HISTORY BUTTON
 // GET GAME HISTORY
 var fetchGameHistory = function(username) {
     return function(dispatch) {
@@ -164,7 +165,6 @@ var fetchGameHistory = function(username) {
         })
         .then(function(scores) {
             return dispatch(
-                // later we need to make this return 'id' as well
                 fetchGameHistorySuccess(username, scores)
             );
         })
@@ -175,7 +175,7 @@ var fetchGameHistory = function(username) {
         });
     }
 };
-
+// TODO: STORE GAME HISTORY AS STATE IN REDUCER TO BE DISPLAYED 
 var FETCH_GAME_HISTORY_SUCCESS = 'FETCH_GAME_HISTORY_SUCCESS';
 var fetchGameHistorySuccess = function(username, scores) {
     return {
@@ -194,7 +194,7 @@ var fetchGameHistoryError = function(username, error) {
     };
 };
 
-
+// TODO: DISPATCH AT THE END OF EVERY GAME
 // GET HIGH SCORE
 var fetchHighScore = function(username) {
     return function(dispatch) {
@@ -214,7 +214,6 @@ var fetchHighScore = function(username) {
         .then(function(data) {
             var highScore = data.score;
             return dispatch(
-                // later we need to make this return 'id' as well
                 fetchHighScoreSuccess(username, highScore)
             );
         })
@@ -226,6 +225,7 @@ var fetchHighScore = function(username) {
     }
 };
 
+// TODO: USE IN REDUCER TO UPDATE HIGH SCORE STATE
 var FETCH_HIGH_SCORE_SUCCESS = 'FETCH_HIGH_SCORE_SUCCESS';
 var fetchHighScoreSuccess = function(username, highScore) {
     return {

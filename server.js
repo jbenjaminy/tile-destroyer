@@ -69,11 +69,11 @@ app.get('/games/:username', jsonParser, function(request, response) {
         .rightJoin('users', 'games.user_id', 'users.id')
         .where({username: username})
         .then(function(scores) {
-            if (!response[0]) {
-                return response.status(404).json({
-                    message: 'Game history not found'
-                });
-            }
+            // if (!response[0]) {
+            //     return response.status(404).json({
+            //         message: 'Game history not found'
+            //     });
+            // }
             return response.json(scores);
         })
         .catch(function(error) {
