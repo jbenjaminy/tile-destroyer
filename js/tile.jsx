@@ -13,10 +13,10 @@ var Tile = React.createClass({
 	onTileClick: function() {
 		if( this.state.tileDisplay === 'inactive') {
 			// dispatch action to decrement score
-			this.props.dispatch(actions.decrementScore(1));
+			this.props.dispatch(actions.decrementScore());
 		} else {
 			// dispatch action to increment score
-			this.props.dispatch(actions.incrementScore(1));
+			this.props.dispatch(actions.incrementScore());
 		};
 	},
 
