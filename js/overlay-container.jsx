@@ -1,19 +1,42 @@
-
+// Upon page load, display user name input field and Game Start button. When game is over, display Final Score and Play Again button
 var React = require('react');
+var ReactDOM = require('react-dom');
 var connect = require('require-redux').connect;
 
-var OverlayInstructions = require('./overlay-instructions');
+var StartButton = require('./start-button');
+var UsernamePrompt = require('./username-prompt');
+var ScoreFeedback = require('./score-feedback');
 
-var OverlayContainer = React.createClass( {
+var DynamicContainer = React.createClass( {
+
+  //Render based on state in Store
   render: function() {
-    return (
+    return {
       <div>
-        <OverlayInstructions />
+
+      <h3>Enter your name and press PLAY to begin.</h3>
+        <p>
+          <UsernamePrompt />
+        </p>
+        <p>
+          <StartButton />
+        </p>
+       {/* The player's score should be rendered after the game has been played
+        <p>
+          <Score />
+        </p> */}
+        {/* The start button/PLAY AGAIN button is rendered after the game is over.
+        <p>
+          <StartButton
+        </p> */}
       </div>
-    );
+    };
   }
 });
 
-var Container = connect()(OverlayContainer);
+var Container = connect()(DynamicContainer);
 
 module.exports = Container;
+
+    Contact GitHub API Training Shop Blog About 
+

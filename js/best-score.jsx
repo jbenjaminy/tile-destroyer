@@ -1,4 +1,3 @@
-
 var React = require( 'react' );
 var connect = require( 'react-redux' ).connect;
 var actions = require( './actions' );
@@ -8,7 +7,7 @@ var BestScore = React.createClass( {
   render: function() {
     return (
       <div>
-        {/* <p>Your score: </p> + {this.props.BestScore} */}
+        <p>High score: </p> + {this.props.highscore}
       </div>
     );
   }
