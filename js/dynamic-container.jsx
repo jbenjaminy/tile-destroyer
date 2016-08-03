@@ -1,6 +1,6 @@
 // Upon page load, display user name input field and Game Start button. When game is over, display Final Score and Play Again button
-
 var React = require('react');
+var ReactDOM = require('react-dom');
 var connect = require('require-redux').connect;
 
 var StartButton = require('./start-button');

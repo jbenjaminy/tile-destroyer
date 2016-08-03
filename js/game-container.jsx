@@ -12,8 +12,8 @@ var TextContainer = require('./text-container');
 
 var GameContainer = React.createClass( {
 
-  toggleOverlay: function() {
-    this.props.dispatch( actions.toggleOverlay() );
+  TOGGLE_OVERLAY: function() {
+    this.props.dispatch( actions.TOGGLE_OVERLAY() );
   };
 
   render: function() {
@@ -31,7 +31,7 @@ var GameContainer = React.createClass( {
         <DynamicContainer />
       </div>
       <div>
-        <OverlayContainer onClick={this.toggleOverlay} showInstructions={this.props.overlay}/>
+        <OverlayContainer onClick={this.TOGGLE_OVERLAY} showInstructions={this.props.overlay}/>
       </div>
     };
   }

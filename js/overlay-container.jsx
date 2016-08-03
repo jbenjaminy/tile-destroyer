@@ -1,5 +1,5 @@
-
 var React = require('react');
+var ReactDOM = require('react-dom');
 var connect = require('require-redux').connect;
 
 var OverlayInstructions = require('./overlay-instructions');
