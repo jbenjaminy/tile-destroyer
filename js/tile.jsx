@@ -5,7 +5,7 @@ var actions = require( './actions' );
 var Tile = React.createClass({
 
 	getInitialState: function() {
-		// set initial state to inactive
+		// set local initial state to inactive
 		return {
 			tileDisplay: 'inactive'
 		};
@@ -18,6 +18,8 @@ var Tile = React.createClass({
 		} else {
 			// dispatch action to increment score
 			this.props.dispatch(actions.incrementScore());
+			// sets tile to inactive once clicked
+			this.makeInactive();
 		};
 	},
 
@@ -39,7 +41,7 @@ var Tile = React.createClass({
 			tileDisplay: 'inactive'
 		})
 		var that=this;
-		// setTimeout() : call this.makeActive after RANDOM sec
+		// setTimeout() : call makeActive after a random amount of seconds
 		setTimeout(function() {that.makeActive();}, randomSeconds)
 	},
 
@@ -55,7 +57,6 @@ var Tile = React.createClass({
 	}
 
 });
-// 	{/*<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></li>*/}
 
 var Container = connect()(Tile);
 
