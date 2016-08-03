@@ -14,6 +14,8 @@ var jsonParser = bodyParser.json();
 var app = express();
 
 /* ----------- USER ENDPOINTS ---------- */
+
+// POST NEW USERS
 app.post('/users', jsonParser, function(request, response) {
     var username = request.body.username.trim();
 
@@ -22,19 +24,15 @@ app.post('/users', jsonParser, function(request, response) {
             message: 'Missing field: username'
         });
     }
-    if (typeof username !== 'string') {
-        return response.status(422).json({
-            message: 'Incorrect field type: username'
-        });
-    }
 
     knex.insert({username: username})
+        .returning('id')
         .into('users')
-        .then(function(username) {
-            console.log(response);
+        .then(function(id) {
             return response.status(201).json({
                 // TODO: return entire user object
                 username,
+                id: id[0],
                 message: 'Registration successful'
             });
         })
@@ -43,16 +41,16 @@ app.post('/users', jsonParser, function(request, response) {
         });
 });
 
-
+// POST NEW SCORES BY USER ID
 app.post('/games/:userId', jsonParser, function(request, response) {
-    var user_id = parseInt(request.params.userId);
+    var userId = parseInt(request.params.userId);
     var score = parseInt(request.body.score);
 
-    knex.insert({user_id: user_id, score: score})
+    knex.insert({user_id: userId, score: score})
         .into('games')
         .then(function() {
             return response.status(201).json({
-                user_id,
+                userId,
                 score, 
                 message: 'Score saved successfully'
             });
@@ -62,8 +60,54 @@ app.post('/games/:userId', jsonParser, function(request, response) {
         });
 });
 
+// GET GAME HISTORY BY USERNAME
+app.get('/games/:username', jsonParser, function(request, response) {
+    var username = request.params.username;
 
-// TODO: DELETE THIS ENDPOINT AFTER TESTING
+    knex.select('score')
+        .from('games')
+        .rightJoin('users', 'games.user_id', 'users.id')
+        .where({username: username})
+        .then(function(scores) {
+            // if (!response[0]) {
+            //     return response.status(404).json({
+            //         message: 'Game history not found'
+            //     });
+            // }
+            return response.json(scores);
+        })
+        .catch(function(error) {
+            console.log(error);
+            response.sendStatus(500);
+        });
+});
+
+// GET HIGH SCORE BY USERNAME
+app.get('/games/:username/highscore', jsonParser, function(request, response) {
+    var username = request.params.username;
+
+    knex.select('score')
+        .from('games')
+        .rightJoin('users', 'games.user_id', 'users.id')
+        .where({username: username})
+        .orderBy('score', 'desc')
+        .then(function(scores) {
+            var highscore = scores[0].score;
+            if (highscore === null) {
+                return response.status(404).json({
+                    message: 'Game history not found'
+                });
+            }
+            return response.json(highscore);
+        })
+        .catch(function(error) {
+            console.log(error);
+            return response.sendStatus(500);
+        });
+});
+
+// TODO: DELETE THESE ENDPOINTS AFTER TESTING
+// GET USERS
 app.get('/users', jsonParser, function(request, response) {
 
     knex.select()
@@ -76,61 +120,7 @@ app.get('/users', jsonParser, function(request, response) {
         });
 });
 
-
-app.get('/games/:username', jsonParser, function(request, response) {
-    var username = request.params.username;
-
-    knex.select('score')
-        .from('games')
-        .rightJoin('users', 'games.user_id', 'users.id')
-        .where({username: username})
-        .then(function(scores) {
-            // if (response.length == 0) {
-            //     return response.status(404).json({
-            //         message: 'Username not found'
-            //     });
-            // }
-            // if (!response[0].score) {
-            //     return response.status(404).json({
-            //         message: 'Game history not found'
-            //     });
-            // }
-            return response.json(scores);
-        })
-        .catch(function(error) {
-            response.sendStatus(500);
-        });
-});
-
-
-app.get('/games/:username/highscore', jsonParser, function(request, response) {
-    var username = request.params.username;
-
-    knex.select('score')
-        .from('games')
-        .rightJoin('users', 'games.user_id', 'users.id')
-        .where({username: username})
-        .orderBy('score', 'desc')
-        .then(function(scores) {
-            var highscore = scores[0].score;
-            // if (response.length === 0) {
-            //     return scores.status(404).json({
-            //         message: 'Username not found'
-            //     });
-            // }
-            // if (typeOf(highscore) === null) {
-            //     return response.status(404).json({
-            //         message: 'Game history not found'
-            //     });
-            // }
-            return response.json(highscore);
-        })
-        .catch(function(error) {
-            return response.sendStatus(500);
-        });
-});
-
-
+// DELETE USER BY USER ID
 app.delete('/users/:userId', jsonParser, function(request, response) {
     var id = request.params.userId;
 
@@ -148,7 +138,7 @@ app.delete('/users/:userId', jsonParser, function(request, response) {
         });
 });
 
-
+// DELETE GAME HISTORY BY USER ID
 app.delete('/games/:userId', jsonParser, function(request, response) {
     var user_id = request.params.userId;
 
