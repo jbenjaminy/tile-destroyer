@@ -8,19 +8,13 @@ var TextContainer = React.createClass({
   render: function() {
     return (
       <div>
-        <p><BestScore /></p>
-        <p><Score /></p>
-        <p><Timer /></p>
+        <BestScore />
+        <Score />
+        <Timer />
       </div>
     );
   }
 });
-
-var mapStateToProps = function(state, props) {
-  return {
-    text: state,
-    // timer, score, etc
-    };
-};
+// TODO : WORK ON TIMER COMPONENT
 
 module.exports = TextContainer;

@@ -8,13 +8,16 @@ var ScoreFeedback = React.createClass( {
 
   render: function() {
     return (
-      <div>
-        {/* <p>Final score: </p> + {this.props.finalScore} */}
-      </div>
+      <div>{this.props.score}</div>
     );
   }
 });
 
-var Container = connect()(ScoreFeedback);
+var mapStateToProps = function(state, props) {
+  return {
+    score: state.score
+  };
+};
 
+var Container = connect(mapStateToProps)(ScoreFeedback);
 module.exports = Container;
