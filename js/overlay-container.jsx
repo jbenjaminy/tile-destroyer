@@ -1,25 +1,25 @@
-// var React = require('react');
+var React = require('react');
 
-// var OverlayInstructions = require('./overlay-instructions');
+var OverlayInstructions = require('./overlay-instructions');
 
-// var show = (this.props.showInstructions ? '' : 'hidden');
+var show = (this.props.showInstructions ? '' : 'hidden');
 
-// var OverlayContainer = React.createClass( {
+var OverlayContainer = React.createClass( {
   
-//   render: function() {
-//     return (
-//       <div>
-//         <div>
-//           <button type="button" onClick={this.props.onClick}>What?</button>
-//         </div>
-//         <div className={show}>
-//           <OverlayInstructions />
-//         </div>
-//       </div>
-//     );
-//   }
-// });
+  render: function() {
+    return (
+      <div>
+        <div>
+          <button type="button" onClick={this.props.onClick}>What?</button>
+        </div>
+        <div className={show}>
+          <OverlayInstructions />
+        </div>
+      </div>
+    );
+  }
+});
 
-// module.exports = OverlayContainer;
+module.exports = OverlayContainer;
 
 

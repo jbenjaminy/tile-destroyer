@@ -2,18 +2,18 @@ var actions = require('./actions');
 
 var combineReducers = require('redux').combineReducers;
 
-// var textReducer = function(state, action) {
-//   state = state || {};
-//   return state;
-// };
-// var boardReducer = function(state, action) {
-//   state = state || {};
-//   return state;
-// };
-// var overlayReducer = function(state, action) {
-//   state = state || {};
-//   return state;
-// };
+var textReducer = function(state, action) {
+  state = state || {};
+  return state;
+};
+var boardReducer = function(state, action) {
+  state = state || {};
+  return state;
+};
+var overlayReducer = function(state, action) {
+  state = state || {};
+  return state;
+};
 var tileReducer = function(state, action) {
   state = state || {};
   	if (action.type === actions.NEW_GAME) {
@@ -65,9 +65,9 @@ var tileReducer = function(state, action) {
 // exports.tileGameReducer = tileGameReducer;
 // 
 var reducer = combineReducers({
-  // text: textReducer,
-  // board: boardReducer,
-  // overlay: overlayReducer,
+  text: textReducer,
+  board: boardReducer,
+  overlay: overlayReducer,
   tile: tileReducer
 });
 

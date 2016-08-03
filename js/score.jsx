@@ -1,16 +1,16 @@
-// // Keeps current score for the player during game.
+// Keeps current score for the player during game.
 
-// var React = require( 'react' );
+var React = require( 'react' );
 
-// var Score = React.createClass( {
+var Score = React.createClass( {
 
-//   render: function() {
-//     return (
-//       <div>
-//         <p>Your score: </p> + {props.score}
-//       </div>
-//     );
-//   }
-// });
+  render: function() {
+    return (
+      <div>
+        <p>Your score: </p> + {props.score}
+      </div>
+    );
+  }
+});
 
-// module.exports = Score;
+module.exports = Score;
