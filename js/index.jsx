@@ -4,8 +4,7 @@ var Provider = require( 'react-redux' ).Provider;
 
 var store = require( './store' );
 var actions = require( './actions' );
-// var GameContainer = require( './game-container' );
-var Board = require( './board' );
+var GameContainer = require( './game-container' );
 
 document.addEventListener( 'DOMContentLoaded', function() {
 
@@ -13,6 +12,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
  
   ReactDOM.render(
       <Provider store={store}>
-          <Board />
+          <GameContainer />
       </Provider>, document.getElementById( 'app' ) );
 } );

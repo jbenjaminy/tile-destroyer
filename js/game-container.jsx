@@ -1,5 +1,4 @@
-Entry point for the game application
-
+// COMPLETE
 var React = require('react');
 var ReactDOM = require('react-dom');
 var connect = require('react-redux').connect;
@@ -19,9 +18,9 @@ var GameContainer = React.createClass( {
     return (
       <div>
           <h1>Shoot the Tiles</h1>
-          <Board size={this.props.board}/>
+          <Board />
         <div className="info-board">
-          <TextContainer text={this.props.text}/>
+          <TextContainer />
         </div>
           <DynamicContainer />
           <OverlayContainer onClick={this.manageOverlay} showInstructions={this.props.overlay}/>
@@ -32,17 +31,10 @@ var GameContainer = React.createClass( {
 
 var mapStateToProps = function(state, props) {
   return {
-    text: state,
-    timer, score, etc
-    board: state,
-    dimentions of board
-    overlay: state
-    showing of instructions
-    
-    // mapStateToProps also in tilecontainer for susbstate "tile"
-  };
+    overlay: state.overlay
+    // TODO: WRITE THIS INTO REDUCER
+    };
 };
-
 var Container = connect(mapStateToProps)(GameContainer);
 
-// module.exports = Container;
+module.exports = Container;

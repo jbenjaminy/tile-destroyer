@@ -16,4 +16,11 @@ var TextContainer = React.createClass({
   }
 });
 
+var mapStateToProps = function(state, props) {
+  return {
+    text: state,
+    // timer, score, etc
+    };
+};
+
 module.exports = TextContainer;

@@ -1,4 +1,5 @@
-// Upon page load, display user name input field and Game Start button. When game is over, display Final Score and Play Again button
+
+        // Upon page load, display user name input field and Game Start button. When game is over, display Final Score and Play Again button
 var React = require('react');
 
 var StartButton = require('./start-button');
@@ -23,7 +24,18 @@ var DynamicContainer = React.createClass( {
     );
   }
 });
+// TODO: MAP DIRECTLY IN BOTH SUB-COMPONENTS (REQUIRE AT THE TOP)
+// var mapStateToProps = function(state, props) {
+//   return {
+//     usernameInput: state.username,
+//     currentScore: state.score
+//     };
+// };
+// var Container = connect(mapStateToProps)(GameContainer);
 
+// module.exports = Container;
+// TODO: RENDER BEFORE GAME(isBeforeGame)/AFTER GAME COMPONENTS(isAfterGame);
+// start game will trigger (isInGame) -- one state
 module.exports = DynamicContainer;
   // The player's score should be rendered after the game has been played
   //      <p>
