@@ -4,7 +4,8 @@ var connect = require('react-redux').connect;
 
 var Board = require('./board');
 var TextContainer = require('./text-container');
-var DynamicContainer = require('./dynamic-container');
+var BeforeContainer = require('./before-container');
+var AfterContainer = require('./after-container');
 var OverlayContainer = require('./overlay-container');
 
 var GameContainer = React.createClass( {
@@ -23,12 +24,18 @@ var GameContainer = React.createClass( {
           <TextContainer />
         </div>
           <BeforeContainer />
-          <OverlayContainer manageOverlay={this.manageOverlay} />
+          <OverlayContainer manageOverlay={this.manageOverlay} overlay={this.props.overlay} />
           <AfterContainer />
       </div>
     );
   }
 });
 
-var Container = connect()(GameContainer);
+var mapStateToProps = function(state, props) {
+  return {
+    overlay: state.overlay
+  };
+};
+
+var Container = connect(mapStateToProps)(GameContainer);
 module.exports = Container;

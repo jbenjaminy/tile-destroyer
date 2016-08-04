@@ -18,6 +18,15 @@ var toggleOverlay = function() {
 };
 
 
+// VIEW GAME HISTORY
+ var TOGGLE_HISTORY_DISPLAY = 'TOGGLE_HISTORY_DISPLAY';
+ var toggleHistoryDisplay = function() {
+    return {
+        type: TOGGLE_HISTORY_DISPLAY
+    };
+ };
+
+
 // DISPLAY DYNAMIC CONTAINER BEFORE GAME
 var SHOW_BEFORE_CONTAINER = 'SHOW_BEFORE_CONTAINER';
 var showBeforeContainer = function() {
@@ -58,6 +67,13 @@ var DECREMENT_SCORE = 'DECREMENT_SCORE';
 var decrementScore = function() {
     return {
         type: DECREMENT_SCORE
+    };
+};
+
+var TIMER_STOP = 'TIMER_STOP';
+var timerStop = function() {
+    return {
+        type: TIMER_STOP
     };
 };
 

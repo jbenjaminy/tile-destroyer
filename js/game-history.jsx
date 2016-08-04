@@ -1,6 +1,6 @@
 var React = require('react');
 var connect = require('react-redux').connect;
-var actions = require('.actions');
+var actions = require('./actions');
 
 var GameHistory = React.createClass({
 
@@ -12,13 +12,15 @@ var GameHistory = React.createClass({
 	render: function() {
 		//TODO: Add showHistory state as boolean
 		var classes = 'game-history ';
-		if (!this.props.showHistory) { 
+		if (!this.props.historyDisplay) { 
 			classes += 'hidden';
 		};
 
 		return (
-			<div className={classes}>{this.props.gameHistory}</div>
-			<button onClick={this.closeHistory}>OKAY</button>
+			<div>
+				<div className={classes}>{this.props.gameHistory}</div>
+				<button onClick={this.closeHistory}>OKAY</button>
+			</div>
 		);
 	}
 
@@ -26,7 +28,8 @@ var GameHistory = React.createClass({
 
 var mapStateToProps = function(state, props) {
 	return {
-		gameHistory: state.gameHistory
+		gameHistory: state.gameHistory,
+		historyDisplay: state.historyDisplay
 	}
 };
 
