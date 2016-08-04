@@ -7,7 +7,7 @@ var Score = React.createClass( {
   render: function() {
     return (
       <div>
-        <p>Your score: {this.props.score}</p> 
+        <p>Your score: {this.props.score}</p>
       </div>
     );
   }
@@ -20,4 +20,4 @@ var mapStateToProps = function(state, props) {
 };
 
 var Container = connect(mapStateToProps)(Score);
-module.exports = Container;;
+module.exports = Container;
