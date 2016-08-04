@@ -64,17 +64,17 @@ app.post('/games/:userId', jsonParser, function(request, response) {
 app.get('/games/:username', jsonParser, function(request, response) {
     var username = request.params.username;
 
-    knex.select('score')
+    knex.select('games.id', 'score')
         .from('games')
         .rightJoin('users', 'games.user_id', 'users.id')
         .where({username: username})
-        .then(function(scores) {
+        .then(function(gameHistory) {
             // if (!response[0]) {
             //     return response.status(404).json({
             //         message: 'Game history not found'
             //     });
             // }
-            return response.json(scores);
+            return response.json(gameHistory);
         })
         .catch(function(error) {
             console.log(error);
@@ -92,13 +92,13 @@ app.get('/games/:username/highscore', jsonParser, function(request, response) {
         .where({username: username})
         .orderBy('score', 'desc')
         .then(function(scores) {
-            var highscore = scores[0].score;
-            if (highscore === null) {
+            var highScore = scores[0].score;
+            if (highScore === null) {
                 return response.status(404).json({
                     message: 'Game history not found'
                 });
             }
-            return response.json(highscore);
+            return response.json(highScore);
         })
         .catch(function(error) {
             console.log(error);

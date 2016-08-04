@@ -2,134 +2,116 @@ var actions = require('./actions');
 
 var combineReducers = require('redux').combineReducers;
 
-// var textReducer = function(state, action) {
-//   state = state || {};
-//   return state;
-// };
-// var boardReducer = function(state, action) {
-//   state = state || {};
-//   return state;
-// };
-// var overlayReducer = function(state, action) {
-//   state = state || {};
-//   return state;
-// };
-var initialState = {
-	score: 0
-};
-
-//This is for a newGame action
-//reset to initial state
-// game.props.score=0;
-// timer.props.count=15;
-// // Lay new tiles
-
-
 var gameReducer = function(state, action) {
-  state = state || initialState;
-	switch (action.type)  {
-		case actions.NEW_GAME:
-			return Object.assign({}, state, {
-				score: 0
-			});
-		case actions.INCREMENT_SCORE:
-			return Object.assign({}, state, {
-				score: state.score++
-			});
-		case actions.DECREMENT_SCORE:
-			return Object.assign({}, state, {
-				score: state.score--
-			});
-		default:
-			return state;
-	}
-  	// if (action.type === actions.NEW_GAME) {
-	// 	return Object.assign({}, state, {score: 0 });
-    //
-	// } else if (action.type === actions.INCREMENT_SCORE) {
-	// 	return Object.assign({}, state, {score: state.score++} );
-	//
-	// } else if (action.type === actions.DECREMENT_SCORE) {
-	// 	return Object.assign({}, state, {score: state.score--} );
-    //
-	// } else {
-	// 	return state;
-	// }
-};
-
-
-// var tileGameReducer = function(state, action) {
-//   state = state || {};
-
-//   if (action.type === actions.TOGGLE_OVERLAY) {
-//     return
-//   };
-// }
-
-//   if (action.type === actions.NEW_GAME) {
-//     return {
-//       score: 0,
-//       count: 10, //timer
-
-//     };
-//   }
-
-//   if (action.type === actions.INCREMENT_SCORE) (
-//     return {
-
-//     }
-//   )
-module.exports = gameReducer;
-
-
-
-
-/*==================== NEW REDUCER FILE ==========================*/
-
-var actions = require('./actions');
-
-var initialState = {
-	username: '',
-	score: 0,
-	overlay: false
-//timer
-//highScore
-};
-
-var gameReducer = function(state, action) {
-	state = state || initialState;
-
+	state = state || {};
 	if (action.type === actions.NEW_GAME) {
-		var newInitialState = Object.assign({}, initialState);
-		return newInitialState;
-	}
-
-	else if (action.type === actions.INCREMENT_SCORE) {
-		var newScore = state.score++;
-		return Object.assign({}, state, {score: newScore})
-	}
-
-	else if (action.type === actions.DECREMENT_SCORE) {
-		var newScore = state.score--;
-		return Object.assign({}, state, {score: newScore})
-	}
-
-	else if (action.type === actions.TOGGLE_OVERLAY) {
+		var username = '';
+		var id = null;
+		var highScore = highScore;
+		var gameHistory = [];
+		var timer = 60;
+		var score = 0;
+		var overlay = false;
+		var beforeContainer = false;
+		var afterContainer = false;
+		var statusMessage = false;
+		if (state.username) {
+			username = state.username;
+			id = state.userId;
+			highScore = state.highScore;
+			gameHistory = state.gameHistory;
+		}
+		return Object.assign({}, {
+			username: username,
+			id: id,
+			highScore: highScore,
+			gameHistory: gameHistory,
+			timer: timer,
+			score: score,
+			overlay: overlay,
+			beforeContainer: beforeContainer,
+			afterContainer: afterContainer,
+			statusMessage: statusMessage
+		});
+	} else if (action.type === actions.TOGGLE_OVERLAY) {
 		if (state.overlay) {
-			return Object.assign({}, state, {overlay: false})
+			return Object.assign({}, state, {
+				overlay: false
+			});
 		} else {
-			return Object.assign({}, state, {overlay: true})
+			return Object.assign({}, state, {
+				overlay: true
+			});
+	} else if (action.type === actions.SHOW_BEFORE_CONTAINER) {
+		return Object.assign({}, state, {
+			beforeContainer: true
+		});
+	} else if (action.type === actions.HIDE_DYNAMIC_CONTAINER) {
+		return Object.assign({}, state, {
+			beforeContainer: false,
+			afterContainer: false
+		});
+	} else if (action.type === actions.SHOW_AFTER_CONTAINER) {
+		return Object.assign({}, state, {
+			afterContainer: true
+		});
+	} else if (action.type === actions.INCREMENT_SCORE) {
+		var newScore = state.score++;
+		return Object.assign({}, state, {
+			score: newScore
+		});
+	} else if (action.type === actions.DECREMENT_SCORE) {
+		var newScore = state.score--;
+		return Object.assign({}, state, {
+			score: newScore
+		});
+	} else if (action.type === actions.FETCH_ADD_USER_SUCCESS) {
+		var newUsername = action.username;
+		var newId = action.id;
+		var newStatusMessage = action.message;
+		return Object.assign({}, state, {
+			username: newUsername,
+			id: newId,
+			statusMessage: newStatusMessage
+		});
+	} else if (action.type === actions.FETCH_ADD_USER_ERROR) {
+		var newStatusMessage = action.error;
+		return Object.assign({}, state, {
+			statusMessage: newStatusMessage
+		});
+	} else if (action.type === actions.FETCH_ADD_SCORE_SUCCESS) {
+		var newStatusMessage = action.message;
+		return Object.assign({}, state, {
+			statusMessage: newStatusMessage
+		});
+	} else if (action.type === actions.FETCH_ADD_SCORE_ERROR) {
+		var newStatusMessage = action.error;
+		return Object.assign({}, state, {
+			statusMessage: newStatusMessage
+		});
+	} else if (action.type === actions.FETCH_GAME_HISTORY_SUCCESS) {
+		var newGameHistory = action.gameHistory;
+		return Object.assign({}, state, {
+			gameHistory: newGameHistory
+		});
+	} else if (action.type === actions.FETCH_GAME_HISTORY_ERROR) {
+		var newStatusMessage = action.error;
+		return Object.assign({}, state, {
+			statusMessage: newStatusMessage
+		});
+	} else if (action.type === actions.FETCH_HIGH_SCORE_SUCCESS) {
+		var newHighScore = action.highScore;
+		return Object.assign({}, state, {
+			highScore: newHighScore
+		}); 
+	} else if (action.type === actions.FETCH_GAME_HISTORY_ERROR) {
+		var newStatusMessage = action.error;
+		return Object.assign({}, state, {
+			statusMessage: newStatusMessage
+		});
+	} else {
+		return state;
 	}
-	// TODO: CHANGE TO FETCH_ADD_USER_SUCCESS
-	else if (action.type === actions.ADD_USER) {
-		userName = action.username;
-		return Object.assign({}, state, {username: userName})
-
-		// TODO: ADD STATE UPDATES FOR FETCH_HIGH_SCORE_SUCCESS AND FETCH_GAME_HISTORY SUCCESS
-		// TODO: ADD STATE FOR TIMER
-		// TODO: ADD HIDE/SHOW FOR BEFORE CONTAINER AND AFTER CONTAINER
-	} else
-	return state;
-}
+};
 
 module.exports = gameReducer;
