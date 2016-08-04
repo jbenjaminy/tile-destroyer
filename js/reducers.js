@@ -15,6 +15,7 @@ var gameReducer = function(state, action) {
 		var afterContainer = false;
 		var statusMessage = false;
 		var historyDisplay = false;
+		var showBoard = true;
 		var playButton = 'START GAME';
 
 		var timer = true;
@@ -55,7 +56,9 @@ var gameReducer = function(state, action) {
 		});
 	} else if (action.type === actions.SHOW_BEFORE_CONTAINER) {
 		return Object.assign({}, state, {
-			beforeContainer: true
+			beforeContainer: true, 
+			showBoard: false,
+			playButton: 'START GAME'
 		});
 	} else if (action.type === actions.HIDE_DYNAMIC_CONTAINER) {
 		return Object.assign({}, state, {
@@ -64,7 +67,9 @@ var gameReducer = function(state, action) {
 		});
 	} else if (action.type === actions.SHOW_AFTER_CONTAINER) {
 		return Object.assign({}, state, {
-			afterContainer: true
+			afterContainer: true,
+			showBoard: false,
+			playButton: 'PLAY AGAIN'
 		});
 	} else if (action.type === actions.INCREMENT_SCORE) {
 		var newScore = state.score++;
@@ -78,7 +83,7 @@ var gameReducer = function(state, action) {
 		});
 	} else if (action.type === actions.TIMER_STOP) {
 		return Object.assign({}, state, {
-			timer: false;
+			timer: false
 		});
 	} else if (action.type === actions.FETCH_ADD_USER_SUCCESS) {
 		var newUsername = action.username;

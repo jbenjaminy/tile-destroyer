@@ -6,6 +6,10 @@ var BestScore = require('./best-score');
 
 var TextContainer = React.createClass({
   render: function() {
+  	if (!this.props.render) {
+  		return null;
+  	};
+  	
     return (
       <div>
         <BestScore />

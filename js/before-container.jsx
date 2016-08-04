@@ -17,7 +17,7 @@ var BeforeContainer = React.createClass( {
       <div className={classes}>
         <h3>Enter your name and press PLAY to begin.</h3>
             <UsernamePrompt />
-            <PlayButton />
+            <PlayButton text={this.props.playButton}/>
       </div>
     );
   }
@@ -25,7 +25,8 @@ var BeforeContainer = React.createClass( {
 
 var mapStateToProps = function(state, props) {
   return {
-    beforeContainer: state.beforeContainer
+    beforeContainer: state.beforeContainer,
+    playButton: state.playButton
   }
 };
 

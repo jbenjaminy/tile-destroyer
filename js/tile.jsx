@@ -50,7 +50,6 @@ var Tile = React.createClass({
 	},
 
 	render: function() {
-		console.log('inside of tile ');
 		return (
 			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></li>
 		);

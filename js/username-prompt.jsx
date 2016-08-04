@@ -7,6 +7,7 @@ var UsernamePrompt = React.createClass ({
   getName: function(event) {
     event.preventDefault();
     var userName = this.refs.userName.value;
+    console.log(userName);
     this.props.dispatch(actions.fetchAddUser(userName));
 
   },

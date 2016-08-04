@@ -2,11 +2,12 @@
 var React = require('react');
 var OverlayInstructions = require('./overlay-instructions');
 
-var show = (this.props.overlay ? '' : 'hidden');
+
 
 var OverlayContainer = React.createClass( {
 
   render: function() {
+    var show = (this.props.overlay ? '' : 'hidden');
     return (
       <div>
         <div>

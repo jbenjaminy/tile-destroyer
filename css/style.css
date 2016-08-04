@@ -11,3 +11,19 @@
 .tile.active {
 	background: red;
 }
+
+.before-container {
+
+}
+
+.after-container {
+
+}
+
+.game-history {
+
+}
+
+.hidden {
+	display: none;
+}
