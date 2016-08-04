@@ -16,7 +16,7 @@ var PlayButton = React.createClass ({
   
   render: function() {
     return (
-      <button type="button" onClick={this.startNewGame}>PLAY></button>
+      <button type="button" onClick={this.startNewGame}>{this.props.text}</button>
     );
   }
 

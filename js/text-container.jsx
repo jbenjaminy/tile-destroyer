@@ -15,6 +15,5 @@ var TextContainer = React.createClass({
     );
   }
 });
-// TODO : WORK ON TIMER COMPONENT
 
 module.exports = TextContainer;

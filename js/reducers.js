@@ -9,17 +9,21 @@ var gameReducer = function(state, action) {
 		var id = null;
 		var highScore = highScore;
 		var gameHistory = [];
-		var timer = 60;
 		var score = 0;
 		var overlay = false;
 		var beforeContainer = false;
 		var afterContainer = false;
 		var statusMessage = false;
+		var historyDisplay = false;
+		var playButton = 'START GAME';
+
+		var timer = true;
 		if (state.username) {
 			username = state.username;
-			id = state.userId;
+			id = state.id;
 			highScore = state.highScore;
 			gameHistory = state.gameHistory;
+			playButton = 'TRY AGAIN';
 		}
 		return Object.assign({}, {
 			username: username,
@@ -31,7 +35,9 @@ var gameReducer = function(state, action) {
 			overlay: overlay,
 			beforeContainer: beforeContainer,
 			afterContainer: afterContainer,
-			statusMessage: statusMessage
+			statusMessage: statusMessage,
+			timer: timer,
+			playButton: playButton
 		});
 	} else if (action.type === actions.TOGGLE_OVERLAY) {
 		if (state.overlay) {
@@ -42,6 +48,11 @@ var gameReducer = function(state, action) {
 			return Object.assign({}, state, {
 				overlay: true
 			});
+		}
+	} else if (action.type === actions.TOGGLE_HISTORY_DISPLAY) {
+		return Object.assign({}, state, {
+			historyDisplay: !historyDisplay
+		});
 	} else if (action.type === actions.SHOW_BEFORE_CONTAINER) {
 		return Object.assign({}, state, {
 			beforeContainer: true
@@ -64,6 +75,10 @@ var gameReducer = function(state, action) {
 		var newScore = state.score--;
 		return Object.assign({}, state, {
 			score: newScore
+		});
+	} else if (action.type === actions.TIMER_STOP) {
+		return Object.assign({}, state, {
+			timer: false;
 		});
 	} else if (action.type === actions.FETCH_ADD_USER_SUCCESS) {
 		var newUsername = action.username;

@@ -1,6 +1,5 @@
 // COMPLETE
 var React = require('react');
-var connect = require('react-redux').connect;
 var OverlayInstructions = require('./overlay-instructions');
 
 var show = (this.props.overlay ? '' : 'hidden');
@@ -21,13 +20,4 @@ var OverlayContainer = React.createClass( {
   }
 });
 
-var mapStateToProps = function(state, props) {
-  return {
-    overlay: state.overlay
-    // TODO: WRITE THIS INTO REDUCER
-  };
-};
-
-var Container = connect(mapStateToProps)(OverlayContainer);
-
-module.exports = Container;
+module.exports = OverlayContainer;
