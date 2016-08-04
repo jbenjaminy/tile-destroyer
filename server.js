@@ -13,6 +13,12 @@ var knex = require('knex')({
 var jsonParser = bodyParser.json();
 var app = express();
 
+app.use(function(request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /* ----------- USER ENDPOINTS ---------- */
 
 // POST NEW USERS
@@ -29,14 +35,16 @@ app.post('/users', jsonParser, function(request, response) {
         .returning('id')
         .into('users')
         .then(function(id) {
+            console.log('post user success');
+            console.log(id, 'id');
             return response.status(201).json({
-                // TODO: return entire user object
                 username,
                 id: id[0],
                 message: 'Registration successful'
             });
         })
         .catch(function(error) {
+            console.log('knex error');
             return response.sendStatus(500);
         });
 });
@@ -49,6 +57,7 @@ app.post('/games/:userId', jsonParser, function(request, response) {
     knex.insert({user_id: userId, score: score})
         .into('games')
         .then(function() {
+            console.log('post score success');
             return response.status(201).json({
                 userId,
                 score, 
@@ -69,11 +78,8 @@ app.get('/games/:username', jsonParser, function(request, response) {
         .rightJoin('users', 'games.user_id', 'users.id')
         .where({username: username})
         .then(function(gameHistory) {
-            // if (!response[0]) {
-            //     return response.status(404).json({
-            //         message: 'Game history not found'
-            //     });
-            // }
+            console.log('get game history success');
+            console.log(gameHistory, 'gameHistory');
             return response.json(gameHistory);
         })
         .catch(function(error) {
@@ -98,6 +104,8 @@ app.get('/games/:username/highscore', jsonParser, function(request, response) {
                     message: 'Game history not found'
                 });
             }
+            console.log('get high score success');
+            console.log(highScore, 'highScore');
             return response.json(highScore);
         })
         .catch(function(error) {
@@ -105,57 +113,6 @@ app.get('/games/:username/highscore', jsonParser, function(request, response) {
             return response.sendStatus(500);
         });
 });
-
-// TODO: DELETE THESE ENDPOINTS AFTER TESTING
-// GET USERS
-app.get('/users', jsonParser, function(request, response) {
-
-    knex.select()
-        .from('users')
-        .then(function(users) {
-            return response.json(users);
-        })
-        .catch(function(error) {
-            return response.sendStatus(500);
-        });
-});
-
-// DELETE USER BY USER ID
-app.delete('/users/:userId', jsonParser, function(request, response) {
-    var id = request.params.userId;
-
-    knex('users')
-        .where('id', id)
-        .del()
-        .then(function(user_id) {
-            return response.status(200).json({
-                user_id, 
-                message: 'User deleted successfully'
-            });
-        })
-        .catch(function(error) {
-            return response.sendStatus(500);
-        });
-});
-
-// DELETE GAME HISTORY BY USER ID
-app.delete('/games/:userId', jsonParser, function(request, response) {
-    var user_id = request.params.userId;
-
-    knex('games')
-        .where('user_id', user_id)
-        .del()
-        .then(function(user_id) {
-            return response.status(200).json({
-                user_id, 
-                message: 'Game history deleted successfully'
-            });
-        })
-        .catch(function(error) {
-            return response.sendStatus(500);
-        });
-});
-
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {

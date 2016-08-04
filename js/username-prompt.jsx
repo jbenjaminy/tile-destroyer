@@ -21,7 +21,7 @@ var UsernamePrompt = React.createClass ({
     return (
       <div>
         <form>
-          <h4>{status}</h4>
+          <h4>{this.props.statusMessage}</h4>
           <input type="text" ref="userName" placeholder="Player name" id="player-name" required />
           <input type="submit" id="submit-button" onClick={this.getName} />
         </form>

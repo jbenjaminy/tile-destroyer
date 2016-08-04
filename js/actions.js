@@ -1,6 +1,5 @@
 /*---------- ACTIONS ---------*/
 var fetch = require('isomorphic-fetch');
-var store = require('./store');
 
 // START GAME
 var NEW_GAME = 'NEW_GAME';
@@ -85,9 +84,13 @@ var timerStop = function() {
 // POST NEW USER
 var fetchAddUser = function(usernameInput) {
     return function(dispatch) {
-        var url = 'localhost:8080/users';
+        var url = 'http://localhost:8080/users';
         var request = {
             method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+             },
             body: JSON.stringify(
                 {username: usernameInput}
             )};
@@ -109,10 +112,7 @@ var fetchAddUser = function(usernameInput) {
             var message = data.message;
             return dispatch(
                 fetchAddUserSuccess(username, id, message)
-            )
-            .then(function(data) {
-                return data;
-            })
+            );
         })
         .catch(function(error) {
             return dispatch(
@@ -141,13 +141,17 @@ var fetchAddUserError = function(usernameInput, error) {
     };
 };
 
-// TODO: DISPATCH AT THE END OF EVERY GAME
+
 // POST NEW SCORE
 var fetchAddScore = function(userId, score) {
     return function(dispatch) {
-        var url = 'localhost:8080/games/' + userId;
+        var url = 'http://localhost:8080/games/' + userId;
         var request = {
             method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+             },
             body: JSON.stringify(
                 {score: score}
             )};
@@ -197,12 +201,17 @@ var fetchAddScoreError = function(userId, score, error) {
     };
 };
 
-// TODO: CREATE VIEW GAME HISTORY BUTTON DISPATCH ON-CLICK
 // GET GAME HISTORY
 var fetchGameHistory = function(username) {
     return function(dispatch) {
-        var url = 'localhost:8080/games/' + username;
-        return fetch(url)
+        var url = 'http://localhost:8080/games/' + username;
+        var request = { 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+        };
+        return fetch(url, request)
         .then(function(response) {
             if (response.status < 200 || response.status >= 300) {
                 var error = new Error(response.statusText);
@@ -245,12 +254,18 @@ var fetchGameHistoryError = function(username, error) {
     };
 };
 
-// TODO: DISPATCH AT THE END OF EVERY GAME
+
 // GET HIGH SCORE
 var fetchHighScore = function(username) {
     return function(dispatch) {
-        var url = 'localhost:8080/games/' + username + '/highscore';
-        return fetch(url)
+        var url = 'http://localhost:8080/games/' + username + '/highscore';
+        var request = { 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+        };
+        return fetch(url, request)
         .then(function(response) {
             if (response.status < 200 || response.status >= 300) {
                 var error = new Error(response.statusText);
@@ -275,7 +290,6 @@ var fetchHighScore = function(username) {
         });
     }
 };
-
 
 var FETCH_HIGH_SCORE_SUCCESS = 'FETCH_HIGH_SCORE_SUCCESS';
 var fetchHighScoreSuccess = function(username, highScore) {
@@ -318,27 +332,26 @@ exports.incrementScore = incrementScore;
 exports.DECREMENT_SCORE = DECREMENT_SCORE;
 exports.decrementScore = decrementScore;
 
+exports.fetchAddUser = fetchAddUser;
 exports.FETCH_ADD_USER_SUCCESS = FETCH_ADD_USER_SUCCESS;
 exports.FETCH_ADD_USER_ERROR = FETCH_ADD_USER_ERROR;
 exports.fetchAddUserSuccess = fetchAddUserSuccess;
 exports.fetchAddUserError = fetchAddUserError;
 
-exports.fetchAddUser = fetchAddUser;
 exports.fetchAddScore = fetchAddScore;
-exports.fetchGameHistory = fetchGameHistory;
-exports.fetchHighScore = fetchHighScore;
-
 exports.FETCH_ADD_SCORE_SUCCESS = FETCH_ADD_SCORE_SUCCESS;
 exports.FETCH_ADD_SCORE_ERROR = FETCH_ADD_SCORE_ERROR;
 exports.fetchAddScoreSuccess = fetchAddScoreSuccess;
 exports.fetchAddScoreError = fetchAddScoreError;
 
+exports.fetchGameHistory = fetchGameHistory;
 exports.FETCH_GAME_HISTORY_SUCCESS = FETCH_GAME_HISTORY_SUCCESS;
 exports.FETCH_GAME_HISTORY_ERROR = FETCH_GAME_HISTORY_ERROR;
 exports.fetchGameHistorySuccess = fetchGameHistorySuccess;
-exports.fetchGameHistoryError  = fetchGameHistoryError ;
+exports.fetchGameHistoryError  = fetchGameHistoryError;
 
+exports.fetchHighScore = fetchHighScore;
 exports.FETCH_HIGH_SCORE_SUCCESS = FETCH_HIGH_SCORE_SUCCESS;
 exports.FETCH_HIGH_SCORE_ERROR = FETCH_HIGH_SCORE_ERROR;
-exports.fetchHighScoreSuccess = fetchHighScoreSuccess ;
+exports.fetchHighScoreSuccess = fetchHighScoreSuccess;
 exports.fetchHighScoreError = fetchHighScoreError;
