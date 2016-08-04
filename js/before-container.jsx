@@ -7,10 +7,15 @@ var connect = require('react-redux').connect;
 
 var BeforeContainer = React.createClass( {
 
-  //Render based on state in Store
   render: function() {
+    var classes = 'before-container  ';
+
+    if (!this.props.beforeContainer) {
+      classes += 'hidden';
+    }
+
     return (
-      <div>
+      <div className={classes}>
         <h3>Enter your name and press PLAY to begin.</h3>
             <UsernamePrompt />
             <PlayButton />
@@ -19,7 +24,11 @@ var BeforeContainer = React.createClass( {
   }
 });
 
-// TODO: RENDER BEFORE GAME(isBeforeGame)/AFTER GAME COMPONENTS(isAfterGame);
-// start game will trigger (isInGame) -- one state
-// PLAY BUTTON DISPATCHES actions.newGame() (start-timer), reset score
-module.exports = BeforeContainer;
+var mapStateToProps = function(state, props) {
+  return {
+    beforeContainer: state.beforeContainer
+  }
+};
+
+var Container = connect(mapStateToProps)(BeforeContainer);
+module.exports = Container;

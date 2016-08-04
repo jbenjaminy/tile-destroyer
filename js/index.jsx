@@ -7,8 +7,8 @@ var actions = require( './actions' );
 var GameContainer = require( './game-container' );
 
 document.addEventListener( 'DOMContentLoaded', function() {
-
- store.dispatch( actions.showBeforeContainer() );
+  // Dispatches action to show BeforeContainer (username/Play Game display)
+  store.dispatch(actions.showBeforeContainer());
  
   ReactDOM.render(
       <Provider store={store}>
