@@ -1,5 +1,8 @@
-var actions = require('./actions');
+// npm run serve
+// npm run http 
+// go to localhost:8081
 
+var actions = require('./actions');
 var combineReducers = require('redux').combineReducers;
 
 var gameReducer = function(state, action) {
@@ -38,16 +41,20 @@ var gameReducer = function(state, action) {
 			afterContainer: afterContainer,
 			statusMessage: statusMessage,
 			timer: timer,
-			playButton: playButton
+			playButton: playButton,
+			showBoard: showBoard
 		});
+
 	} else if (action.type === actions.TOGGLE_OVERLAY) {
 		if (state.overlay) {
 			return Object.assign({}, state, {
-				overlay: false
+				overlay: false,
+				timer: false
 			});
 		} else {
 			return Object.assign({}, state, {
-				overlay: true
+				overlay: true,
+				timer: false
 			});
 		}
 	} else if (action.type === actions.TOGGLE_HISTORY_DISPLAY) {
@@ -74,12 +81,14 @@ var gameReducer = function(state, action) {
 	} else if (action.type === actions.INCREMENT_SCORE) {
 		var newScore = state.score++;
 		return Object.assign({}, state, {
-			score: newScore
+			score: newScore,
+			timer: false
 		});
 	} else if (action.type === actions.DECREMENT_SCORE) {
 		var newScore = state.score--;
 		return Object.assign({}, state, {
-			score: newScore
+			score: newScore,
+			timer: false
 		});
 	} else if (action.type === actions.TIMER_STOP) {
 		return Object.assign({}, state, {

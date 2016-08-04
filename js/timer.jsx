@@ -1,7 +1,7 @@
 var React = require('react');
 var moment = require('moment');
 var connect = require('react-redux').connect;
-var action = require('./actions');
+var actions = require('./actions');
 
 var Timer = React.createClass({
     onEndGame: function() {
@@ -23,11 +23,11 @@ var Timer = React.createClass({
                       console.log(clock);
               }
           }, 1000);
-
+          var that = this;
           var timeout = setTimeout(function () {
                 clearInterval(timer);
-                onEndGame();
-            }, 60000);
+                that.onEndGame();
+            }, 5000);
         }
         return (
             <p>{clock}</p>
