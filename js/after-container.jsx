@@ -9,18 +9,27 @@ var AfterContainer = React.createClass( {
 
   //Render based on state in Store
   render: function() {
-    return (
-      <div>
+    var classes = 'after-display  ';
+    if (!this.props.afterContainer) {
+      classes += 'hidden';
+    };
 
-      <h3>Your final score is: </h3>
-          <ScoreFeedback />
-          <h3>Press PLAy to try again.</h3>
-          <PlayButton />
+    return (
+      <div className={classes}>
+        <h3>Your final score is: </h3>
+        <ScoreFeedback />
+        <h3>Press PLAy to try again.</h3>
+        <PlayButton />
       </div>
     );
   }
 });
 
-// TODO: RENDER BEFORE GAME(isBeforeGame)/AFTER GAME COMPONENTS(isAfterGame);
-// start game will trigger (isInGame) -- one state
-module.exports = AfterContainer;
+var mapStateToProps = function(state, props) {
+  return {
+    afterContainer: state.afterContainer
+  }
+}
+
+var Container = connect(mapStateToProps)(AfterContainer);
+module.exports = Container;
