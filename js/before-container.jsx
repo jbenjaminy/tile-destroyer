@@ -9,7 +9,6 @@ var BeforeContainer = React.createClass( {
 
   render: function() {
     var classes = 'before-container  ';
-
     if (!this.props.beforeContainer) {
       classes += 'hidden';
     }
