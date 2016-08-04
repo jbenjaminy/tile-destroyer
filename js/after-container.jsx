@@ -6,7 +6,6 @@ var ScoreFeedback = require('./score-feedback');
 var connect = require('react-redux').connect;
 
 var AfterContainer = React.createClass( {
-
   //Render based on state in Store
   render: function() {
     var classes = 'after-display  ';
@@ -18,7 +17,9 @@ var AfterContainer = React.createClass( {
       <div className={classes}>
         <h3>Your final score is: </h3>
         <ScoreFeedback />
-        <h3>Press PLAy to try again.</h3>
+        <h3>Your Game History</h3>
+        <GameHistoryButton />
+        <h3>Press PLAY to try again.</h3>
         <PlayButton />
       </div>
     );
