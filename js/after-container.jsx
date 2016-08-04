@@ -3,11 +3,19 @@
 var React = require('react');
 var PlayButton = require('./play-button');
 var ScoreFeedback = require('./score-feedback');
+var GameHistory = require('./game-history');
 var connect = require('react-redux').connect;
 
 var AfterContainer = React.createClass( {
+  // TODO: Add 'toggleHistoryDisplay' to actions
+  showHistory: function(event) {
+    event.preventDefault();
+    // dispatches action to retrieve users score history
+    this.props.dispatch(actions.fetchGameHistory());
+    // dispatches action to set showHistory state to 'true'
+    this.props.dispatch(actions.toggleHistoryDisplay());
+  },
 
-  //Render based on state in Store
   render: function() {
     var classes = 'after-display  ';
     if (!this.props.afterContainer) {
@@ -16,9 +24,11 @@ var AfterContainer = React.createClass( {
 
     return (
       <div className={classes}>
-        <h3>Your final score is: </h3>
+        <h3>Your Final Score Is: </h3>
         <ScoreFeedback />
-        <h3>Press PLAy to try again.</h3>
+        <button type="button" onClick={this.showHistory}>Your Game History</button>
+        <GameHistory />
+        <h3>Press PLAY To Try Again!</h3>
         <PlayButton />
       </div>
     );
