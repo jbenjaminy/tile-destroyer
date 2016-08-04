@@ -3,37 +3,67 @@
 // START GAME
 var NEW_GAME = 'NEW_GAME';
 var newGame = function() {
-  return {
-    type: NEW_GAME
-  };
+    return {
+        type: NEW_GAME
+    };
 };
+
 
 // VIEW INSTRUCTIONS
 var TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
 var toggleOverlay = function() {
-  return {
-    type: TOGGLE_OVERLAY
-  };
+    return {
+        type: TOGGLE_OVERLAY
+    };
 };
+
+
+// DISPLAY DYNAMIC CONTAINER BEFORE GAME
+var SHOW_BEFORE_CONTAINER = 'SHOW_BEFORE_CONTAINER';
+var showBeforeContainer = function() {
+    return {
+        type: SHOW_BEFORE_CONTAINER
+    };
+};
+
+
+// HIDE BOTH DYNAMIC CONTAINERS
+var HIDE_DYNAMIC_CONTAINER = 'HIDE_DYNAMIC_CONTAINER';
+var hideDynamicContainer = function() {
+    return {
+        type: HIDE_DYNAMIC_CONTAINER
+    };
+};
+
+
+// DISPLAY DYNAMIC CONTAINER AFTER GAME
+var SHOW_AFTER_CONTAINER = 'SHOW_AFTER_CONTAINER';
+var showAfterContainer = function() {
+    return {
+        type: SHOW_AFTER_CONTAINER
+    };
+};
+
 
 // CHANGE SCORE
 var INCREMENT_SCORE = 'INCREMENT_SCORE';
 var incrementScore = function() {
-  return {
-    type: INCREMENT_SCORE
-  };
+    return {
+        type: INCREMENT_SCORE
+    };
 };
+
 
 var DECREMENT_SCORE = 'DECREMENT_SCORE';
 var decrementScore = function() {
-  return {
-    type: DECREMENT_SCORE
-  };
+    return {
+        type: DECREMENT_SCORE
+    };
 };
 
 
 /*---------- FETCH ACTIONS ---------*/
-// TODO: NEED DISPATCH WHEN NEW USER SUBMITS USERNAME
+
 // POST NEW USER
 var fetchAddUser = function(usernameInput) {
     return function(dispatch) {
@@ -70,7 +100,7 @@ var fetchAddUser = function(usernameInput) {
         });
     }
 };
-// TODO: NEED TO STORE USERNAME AND ID IN REDUCER AS STATE
+
 var FETCH_ADD_USER_SUCCESS = 'FETCH_ADD_USER_SUCCESS';
 var fetchAddUserSuccess = function(username, id, message) {
     return {
@@ -90,7 +120,7 @@ var fetchAddUserError = function(usernameInput, error) {
     };
 };
 
-// TODO: NEED DISPATCH AFTER EVERY GAME
+// TODO: DISPATCH AT THE END OF EVERY GAME
 // POST NEW SCORE
 var fetchAddScore = function(userId, score) {
     return function(dispatch) {
@@ -146,7 +176,7 @@ var fetchAddScoreError = function(userId, score, error) {
     };
 };
 
-// TODO: DISPATCH FOR ON-CLICK ON VIEW GAME HISTORY BUTTON
+// TODO: CREATE VIEW GAME HISTORY BUTTON DISPATCH ON-CLICK
 // GET GAME HISTORY
 var fetchGameHistory = function(username) {
     return function(dispatch) {
@@ -163,9 +193,9 @@ var fetchGameHistory = function(username) {
         .then(function(response) {
             return response.json();
         })
-        .then(function(scores) {
+        .then(function(gameHistory) {
             return dispatch(
-                fetchGameHistorySuccess(username, scores)
+                fetchGameHistorySuccess(username, gameHistory)
             );
         })
         .catch(function(error) {
@@ -175,13 +205,13 @@ var fetchGameHistory = function(username) {
         });
     }
 };
-// TODO: STORE GAME HISTORY AS STATE IN REDUCER TO BE DISPLAYED 
+
 var FETCH_GAME_HISTORY_SUCCESS = 'FETCH_GAME_HISTORY_SUCCESS';
-var fetchGameHistorySuccess = function(username, scores) {
+var fetchGameHistorySuccess = function(username, gameHistory) {
     return {
         type: FETCH_GAME_HISTORY_SUCCESS,
-        userName: userName,
-        scores: scores
+        username: username,
+        gameHistory: gameHistory
     };
 };
 
@@ -225,7 +255,7 @@ var fetchHighScore = function(username) {
     }
 };
 
-// TODO: USE IN REDUCER TO UPDATE HIGH SCORE STATE
+
 var FETCH_HIGH_SCORE_SUCCESS = 'FETCH_HIGH_SCORE_SUCCESS';
 var fetchHighScoreSuccess = function(username, highScore) {
     return {
@@ -251,6 +281,15 @@ exports.newGame = newGame;
 
 exports.TOGGLE_OVERLAY = TOGGLE_OVERLAY;
 exports.toggleOverlay = toggleOverlay;
+
+exports.SHOW_BEFORE_CONTAINER = SHOW_BEFORE_CONTAINER;
+exports.showBeforeContainer = showBeforeContainer;
+
+exports.HIDE_DYNAMIC_CONTAINER = HIDE_DYNAMIC_CONTAINER;
+exports.hideDynamicContainer = hideDynamicContainer;
+
+exports.SHOW_AFTER_CONTAINER = SHOW_AFTER_CONTAINER;
+exports.showAfterContainer = showAfterContainer;
 
 exports.INCREMENT_SCORE = INCREMENT_SCORE;
 exports.incrementScore = incrementScore;
