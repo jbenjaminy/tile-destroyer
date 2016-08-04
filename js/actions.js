@@ -1,4 +1,6 @@
 /*---------- ACTIONS ---------*/
+var fetch = require('isomorphic-fetch');
+var store = require('./store');
 
 // START GAME
 var NEW_GAME = 'NEW_GAME';
@@ -107,7 +109,10 @@ var fetchAddUser = function(usernameInput) {
             var message = data.message;
             return dispatch(
                 fetchAddUserSuccess(username, id, message)
-            );
+            )
+            .then(function(data) {
+                return data;
+            })
         })
         .catch(function(error) {
             return dispatch(
@@ -317,6 +322,11 @@ exports.FETCH_ADD_USER_SUCCESS = FETCH_ADD_USER_SUCCESS;
 exports.FETCH_ADD_USER_ERROR = FETCH_ADD_USER_ERROR;
 exports.fetchAddUserSuccess = fetchAddUserSuccess;
 exports.fetchAddUserError = fetchAddUserError;
+
+exports.fetchAddUser = fetchAddUser;
+exports.fetchAddScore = fetchAddScore;
+exports.fetchGameHistory = fetchGameHistory;
+exports.fetchHighScore = fetchHighScore;
 
 exports.FETCH_ADD_SCORE_SUCCESS = FETCH_ADD_SCORE_SUCCESS;
 exports.FETCH_ADD_SCORE_ERROR = FETCH_ADD_SCORE_ERROR;

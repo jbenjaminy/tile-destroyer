@@ -4,7 +4,10 @@ var Tile = require('./tile').Container;
 var Board = React.createClass({
 
 	render: function() {
-		console.log(' inside board');
+		if (!this.props.render) {
+			return null;
+		};
+		
 		var listArray = [];
 		// TODO: set iteration to difficulty setting (this.state.difficulty)
 		for (var i = 0; i < 20; i++) {
@@ -12,7 +15,7 @@ var Board = React.createClass({
 		}
 		
 		return (
-			<ul>
+			<ul >
 				{listArray}
 			</ul>
 		);

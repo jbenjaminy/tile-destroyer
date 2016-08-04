@@ -11,7 +11,7 @@ var PlayButton = React.createClass ({
     // Dispatches action to start new game
     this.props.dispatch(actions.newGame());
     // Dispatches action to hide both Before & After game displays
-    this.props.dispatch(actions.hideDyanmicContainer());
+    this.props.dispatch(actions.hideDynamicContainer());
   },
   
   render: function() {

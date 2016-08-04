@@ -19,9 +19,9 @@ var GameContainer = React.createClass( {
     return (
       <div>
           <h1>Shoot the Tiles</h1>
-          <Board />
+          <Board render={this.props.showBoard}/>
         <div className="info-board">
-          <TextContainer />
+          <TextContainer render={this.props.showBoard} />
         </div>
           <BeforeContainer />
           <OverlayContainer manageOverlay={this.manageOverlay} overlay={this.props.overlay} />
@@ -33,7 +33,8 @@ var GameContainer = React.createClass( {
 
 var mapStateToProps = function(state, props) {
   return {
-    overlay: state.overlay
+    overlay: state.overlay,
+    showBoard: state.showBoard
   };
 };
 
