@@ -32,12 +32,13 @@ timeDone: function() {
 
 setInitialState({
   startTime: new Date(),
-  stopTime: new Date(time.getTime() + 1 * 5000),
+  stopTime: new Date(time.getTime() + 1 * 5000), //5 seconds or whatever default time
   currentTime: new Date(),
   isTimeUp: false
 });
 
-    // in reducer on PLAY button
+    // in reducer on PLAY button click,
+
 var timer = setInterval(function() {
   this.state.props.currentTime = new Date();  //set state to currentTime
   if (currentTime.getTime() > stopTime.getTime()) {
@@ -67,8 +68,8 @@ var timer = setInterval(function() {
 
 // working timer code in jQuery -- refactor to JSX
 
-$("document").ready(function() {
-  $("button").click(function() {
+// $("document").ready(function() {
+//   $("button").click(function() {
 
     var time = new Date(); //set state startTime
     var later = new Date(time.getTime() + 1 * 5000); // set state to stopTime
@@ -80,7 +81,15 @@ $("document").ready(function() {
         //currentTime - startTime = time remaining
 
         console.log(later.getTime() - currentTime.getTime());
-      } else {
+      } else if {
+        (this.props.state.currentTime.getTime() - this.props.state.startTimer === this.props.state.stopTime) {
+          
+          this.props.dispatch(actions.fetchAddScore(this.state.props.id, this.props.state.score);
+          this.props.dispatch(actions.fetchHighScore(this.state.props.userName);
+          this.props.dispatch(actions.showAfterContainer());
+      }
+
+      else {
         console.log("Time is up")
         clearInterval(timer);
       };
@@ -88,9 +97,6 @@ $("document").ready(function() {
   });
 })
 
-
-
-// create a Clock component and render here to show time?
 
 var mapStateToProps = function(state, props) {
   return {
