@@ -144,7 +144,6 @@ var fetchAddUserError = function(usernameInput, error) {
 
 // POST NEW SCORE
 var fetchAddScore = function(userId, score) {
-    console.log('userID and score >', userId, score);
     return function(dispatch) {
         var url = 'http://localhost:8080/games/' + userId;
         var request = {
@@ -204,7 +203,6 @@ var fetchAddScoreError = function(userId, score, error) {
 
 // GET GAME HISTORY
 var fetchGameHistory = function(username) {
-    console.log('game history >', username);
     return function(dispatch) {
         var url = 'http://localhost:8080/games/' + username;
         var request = { 
@@ -220,14 +218,13 @@ var fetchGameHistory = function(username) {
                 error.response = response;
                 throw error;
             }
-            console.log('response 1>', response);
             return response;
         })
         .then(function(response) {
-            console.log('resp 2 >', response);
             return response.json();
         })
         .then(function(gameHistory) {
+            console.log(gameHistory, 'gameHistory');
             return dispatch(
                 fetchGameHistorySuccess(username, gameHistory)
             );
@@ -261,7 +258,6 @@ var fetchGameHistoryError = function(username, error) {
 
 // GET HIGH SCORE
 var fetchHighScore = function(username) {
-    console.log('high score >', username);
     return function(dispatch) {
         var url = 'http://localhost:8080/games/' + username + '/highscore';
         var request = { 
@@ -318,6 +314,9 @@ var fetchHighScoreError = function(username, error) {
 /*---------- EXPORTS ---------*/
 exports.NEW_GAME = NEW_GAME;
 exports.newGame = newGame;
+
+exports.TOGGLE_HISTORY_DISPLAY = TOGGLE_HISTORY_DISPLAY;
+exports.toggleHistoryDisplay = toggleHistoryDisplay;
 
 exports.TOGGLE_OVERLAY = TOGGLE_OVERLAY;
 exports.toggleOverlay = toggleOverlay;
