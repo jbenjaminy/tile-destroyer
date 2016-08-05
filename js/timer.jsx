@@ -28,7 +28,7 @@ var Timer = React.createClass({
       var timeout = setTimeout(function () {
         clearInterval(timer);
         that.onEndGame();
-      }, 5000 );
+      }, 15000 );
     },
 
     render: function() {
