@@ -143,7 +143,7 @@ var fetchAddUserError = function(usernameInput, error) {
 
 
 // POST NEW SCORE
-var fetchAddScore = function(userId, score) {
+var fetchAddScore = function(username, userId, score) {
     return function(dispatch) {
         var url = 'http://localhost:8080/games/' + userId;
         var request = {
@@ -173,6 +173,16 @@ var fetchAddScore = function(userId, score) {
                 fetchAddScoreSuccess(userId, score, message)
             );
         })
+        .then(function(data) {
+            return dispatch(
+                fetchGameHistory(username)
+            );
+        })
+        .then(function(data) {
+            return dispatch(
+                fetchHighScore(username)
+            );
+        })  
         .catch(function(error) {
             return dispatch(
                 fetchAddScoreError(userId, score, error)
@@ -225,6 +235,7 @@ var fetchGameHistory = function(username) {
         })
         .then(function(gameHistory) {
             console.log(gameHistory, 'gameHistory');
+
             return dispatch(
                 fetchGameHistorySuccess(username, gameHistory)
             );
@@ -279,7 +290,8 @@ var fetchHighScore = function(username) {
             return response.json();
         })
         .then(function(data) {
-            var highScore = data.score;
+            console.log(data, 'data');
+            var highScore = data;
             return dispatch(
                 fetchHighScoreSuccess(username, highScore)
             );

@@ -18,7 +18,7 @@ var GameHistory = React.createClass({
 
 		return (
 			<div>
-				<div className={classes}>{this.props.gameHistory}</div>
+				<div className={classes}>{JSON.stringify(this.props.gameHistory)}</div>
 				<button onClick={this.closeHistory}>OKAY</button>
 			</div>
 		);

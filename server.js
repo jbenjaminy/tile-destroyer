@@ -104,6 +104,7 @@ app.get('/games/:username/highscore', jsonParser, function(request, response) {
                 });
             }
             console.log('get high score success');
+            console.log('server highscore', highScore);
             return response.json(highScore);
         })
         .catch(function(error) {
