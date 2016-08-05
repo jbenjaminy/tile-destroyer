@@ -3,6 +3,8 @@ var moment = require('moment');
 var connect = require('react-redux').connect;
 var actions = require('./actions');
 
+var clock = '';
+
 var Timer = React.createClass({
     onEndGame: function() {
         this.props.dispatch(actions.timerStop(this.props.state.timer));
@@ -11,26 +13,30 @@ var Timer = React.createClass({
         this.props.dispatch(actions.fetchHighScore(this.props.state.username));
         this.props.dispatch(actions.showAfterContainer());
     },
+
+    timer: function() {
+      var startTime = moment();
+      var timer = setInterval(function() {
+        var currentTime = moment();
+        var difference = currentTime.diff(startTime)
+        clock = Math.round(difference/1000);
+        if (difference >= 1000) {
+            console.log(clock);
+        }
+      }, 1000);
+      var that = this;
+      var timeout = setTimeout(function () {
+        clearInterval(timer);
+        that.onEndGame();
+      }, 15000 );
+    },
+
     render: function() {
-        var clock = '';
         if (this.props.state.timer === true) {
-              var startTime = moment();
-              var timer = setInterval(function() {
-                  var currentTime = moment();
-                  var difference = currentTime.diff(startTime)
-                  clock = Math.round(difference/1000);
-                  if (difference >= 1000) {
-                      console.log(clock);
-              }
-          }, 1000);
-          var that = this;
-          var timeout = setTimeout(function () {
-                clearInterval(timer);
-                that.onEndGame();
-            }, 5000 );
+          this.timer();
         }
         return (
-            <p>{clock}</p>
+            <p>{this.clock}</p>
         );
     }
 });

@@ -332,6 +332,9 @@ exports.incrementScore = incrementScore;
 exports.DECREMENT_SCORE = DECREMENT_SCORE;
 exports.decrementScore = decrementScore;
 
+exports.TIMER_STOP = TIMER_STOP;
+exports.timerStop = timerStop;
+
 exports.fetchAddUser = fetchAddUser;
 exports.FETCH_ADD_USER_SUCCESS = FETCH_ADD_USER_SUCCESS;
 exports.FETCH_ADD_USER_ERROR = FETCH_ADD_USER_ERROR;
