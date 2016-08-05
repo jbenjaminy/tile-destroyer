@@ -19,7 +19,7 @@ var GameContainer = React.createClass( {
 
     return (
       <div>
-          <h1>Shoot the Tiles</h1>
+          <h1>The Ultimate Tile Destroyer</h1>
           <Board render={this.props.showBoard}/>
         <div className="info-board">
           <TextContainer render={this.props.showBoard} />

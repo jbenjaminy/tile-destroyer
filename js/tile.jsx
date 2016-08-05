@@ -12,44 +12,38 @@ var Tile = React.createClass({
 	},
 
 	onTileClick: function() {
-		if( this.state.tileDisplay === 'inactive') {
-			// dispatch action to decrement score
-			this.props.dispatch(actions.decrementScore());
-		} else {
-			// dispatch action to increment score
+		if( this.state.tileDisplay === 'active') {
 			this.props.dispatch(actions.incrementScore());
-			// sets tile to inactive once clicked
-			this.makeInactive();
+			this.setState({
+				tileDisplay: 'inactive'
+			})
+		} else {
+			this.props.dispatch(actions.decrementScore());
 		};
 	},
 
 	tileTimer: function() {
 		var that = this;
-		setTimeout(function() {that.setState({ tileDisplay: null });}, 10000); 
+		setTimeout(function() {that.setState({ tileDisplay: null });}, 20000);
 	},
 
 	makeActive: function() {
-		var that = this;
-		// set state display to active
-		this.setState({
-			tileDisplay: 'active'
-		})
-		// setTimeout() : call this.makeInactive after ~ 1 sec
 		if (this.state.tileDisplay !== null) {
+			var that = this;
+			this.setState({
+				tileDisplay: 'active'
+			})
 			setTimeout(function() {that.makeInactive();}, 1300);
 		}
 	},
 
 	makeInactive: function() {
-		// generates random number
-		var randomSeconds = Math.ceil((Math.random() * 10 + 3) * 1000);
-		// set state display to inactive
-		this.setState({
-			tileDisplay: 'inactive'
-		})
-		var that=this;
-		// setTimeout() : call makeActive after a random amount of seconds
 		if (this.state.tileDisplay !== null) {
+			var randomSeconds = Math.ceil((Math.random() * 10 + 3) * 1000);
+			this.setState({
+				tileDisplay: 'inactive'
+			})
+			var that=this;
 			setTimeout(function() {that.makeActive();}, randomSeconds)
 		}
 	},

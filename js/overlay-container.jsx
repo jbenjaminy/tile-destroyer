@@ -11,7 +11,7 @@ var OverlayContainer = React.createClass( {
     return (
       <div>
         <div>
-          <button type="button" onClick={this.props.manageOverlay}>What?</button>
+          <button type="button" onClick={this.props.manageOverlay}>Game Instructions</button>
         </div>
         <div className={show}>
           <OverlayInstructions />

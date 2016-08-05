@@ -12,13 +12,17 @@ var GameHistory = React.createClass({
 	render: function() {
 		//TODO: Add showHistory state as boolean
 		var classes = 'game-history ';
-		if (!this.props.historyDisplay) { 
+		if (!this.props.historyDisplay) {
 			classes += 'hidden';
 		};
 
+		var historyArr = this.props.gameHistory.map(function(game) {
+			return <li key={game.id}>Score: {game.score}</li>
+		})
+
 		return (
-			<div>
-				<div className={classes}>{JSON.stringify(this.props.gameHistory)}</div>
+			<div className={classes} >
+				<ol >{historyArr}</ol>
 				<button onClick={this.closeHistory}>OKAY</button>
 			</div>
 		);

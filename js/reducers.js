@@ -1,5 +1,5 @@
 // npm run serve
-// npm run http 
+// npm run http
 // go to localhost:8081
 
 var actions = require('./actions');
@@ -22,7 +22,6 @@ var gameReducer = function(state, action) {
 		var statusMessage = false;
 		var historyDisplay = false;
 		var showBoard = true;
-		var playButton = 'START GAME';
 		var timer = true;
 
 		if (state.username) {
@@ -30,7 +29,6 @@ var gameReducer = function(state, action) {
 			id = state.id;
 			highScore = state.highScore;
 			gameHistory = state.gameHistory;
-			playButton = 'TRY AGAIN';
 		}
 
 		return Object.assign({}, {
@@ -44,8 +42,6 @@ var gameReducer = function(state, action) {
 			beforeContainer: beforeContainer,
 			afterContainer: afterContainer,
 			statusMessage: statusMessage,
-			timer: timer,
-			playButton: playButton,
 			showBoard: showBoard
 		});
 
@@ -63,34 +59,29 @@ var gameReducer = function(state, action) {
 		}
 	} else if (action.type === actions.TOGGLE_HISTORY_DISPLAY) {
 		return Object.assign({}, state, {
-			historyDisplay: !historyDisplay
+			historyDisplay: !state.historyDisplay
 		});
 	} else if (action.type === actions.SHOW_BEFORE_CONTAINER) {
 		return Object.assign({}, state, {
-			beforeContainer: true, 
+			beforeContainer: true,
 			showBoard: false,
-			playButton: 'START GAME'
+			playButton: 'START GAME',
+			gameHistory: []
 		});
 	} else if (action.type === actions.HIDE_DYNAMIC_CONTAINER) {
 		return Object.assign({}, state, {
 			beforeContainer: false,
 			afterContainer: false
 		});
-	} else if (action.type === actions.SHOW_AFTER_CONTAINER) {
-		return Object.assign({}, state, {
-			
-		});
 	} else if (action.type === actions.INCREMENT_SCORE) {
-		var newScore  = state.score + 1;
 		return Object.assign({}, state, {
-			score: newScore,
-			timer: false
+			score: state.score + 1,
+			// timer: false
 		});
 	} else if (action.type === actions.DECREMENT_SCORE) {
-		var newScore = state.score - 2;
 		return Object.assign({}, state, {
-			score: newScore,
-			timer: false
+			score: state.score - 2,
+			// timer: false
 		});
 	} else if (action.type === actions.TIMER_STOP) {
 		return Object.assign({}, state, {
@@ -140,7 +131,7 @@ var gameReducer = function(state, action) {
 			afterContainer: true,
 			showBoard: false,
 			playButton: 'PLAY AGAIN'
-		}); 
+		});
 	} else if (action.type === actions.FETCH_GAME_HISTORY_ERROR) {
 		var newStatusMessage = action.error;
 		return Object.assign({}, state, {
