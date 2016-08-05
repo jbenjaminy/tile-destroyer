@@ -77,6 +77,7 @@ var gameReducer = function(state, action) {
 			afterContainer: false
 		});
 	} else if (action.type === actions.SHOW_AFTER_CONTAINER) {
+		console.log(state, 'state');
 		return Object.assign({}, state, {
 			afterContainer: true,
 			showBoard: false,
