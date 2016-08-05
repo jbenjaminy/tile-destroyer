@@ -7,11 +7,15 @@ var clock = '';
 
 var Timer = React.createClass({
     onEndGame: function() {
-        this.props.dispatch(actions.timerStop(this.props.state.timer));
+        this.props.dispatch(actions.timerStop());
         this.props.dispatch(actions.fetchAddScore(this.props.state.id, this.props.state.score));
         this.props.dispatch(actions.fetchGameHistory(this.props.state.username));
         this.props.dispatch(actions.fetchHighScore(this.props.state.username));
         this.props.dispatch(actions.showAfterContainer());
+    },
+
+    updateTimer: function() {
+
     },
 
     timer: function() {
@@ -28,7 +32,7 @@ var Timer = React.createClass({
       var timeout = setTimeout(function () {
         clearInterval(timer);
         that.onEndGame();
-      }, 15000 );
+      }, 5000 );
     },
 
     render: function() {
@@ -36,7 +40,7 @@ var Timer = React.createClass({
           this.timer();
         }
         return (
-            <p>{this.clock}</p>
+            <p>{clock}</p>
         );
     }
 });

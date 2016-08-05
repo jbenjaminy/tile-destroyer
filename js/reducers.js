@@ -5,6 +5,9 @@
 var actions = require('./actions');
 var combineReducers = require('redux').combineReducers;
 
+
+
+
 var gameReducer = function(state, action) {
 	state = state || {};
 	if (action.type === actions.NEW_GAME) {
@@ -20,8 +23,8 @@ var gameReducer = function(state, action) {
 		var historyDisplay = false;
 		var showBoard = true;
 		var playButton = 'START GAME';
-
 		var timer = true;
+
 		if (state.username) {
 			username = state.username;
 			id = state.id;
@@ -29,6 +32,7 @@ var gameReducer = function(state, action) {
 			gameHistory = state.gameHistory;
 			playButton = 'TRY AGAIN';
 		}
+
 		return Object.assign({}, {
 			username: username,
 			id: id,
