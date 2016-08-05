@@ -79,13 +79,15 @@ var gameReducer = function(state, action) {
 			playButton: 'PLAY AGAIN'
 		});
 	} else if (action.type === actions.INCREMENT_SCORE) {
-		var newScore = state.score++;
+		console.log('in increment score');
+		var newScore  = state.score + 1;
+		console.log(newScore);
 		return Object.assign({}, state, {
 			score: newScore,
 			timer: false
 		});
 	} else if (action.type === actions.DECREMENT_SCORE) {
-		var newScore = state.score--;
+		var newScore = state.score - 1;
 		return Object.assign({}, state, {
 			score: newScore,
 			timer: false
