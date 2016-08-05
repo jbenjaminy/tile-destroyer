@@ -87,7 +87,7 @@ var gameReducer = function(state, action) {
 			timer: false
 		});
 	} else if (action.type === actions.DECREMENT_SCORE) {
-		var newScore = state.score - 1;
+		var newScore = state.score - 2;
 		return Object.assign({}, state, {
 			score: newScore,
 			timer: false
