@@ -7,7 +7,8 @@ var GameContainer = require( './game-container' );
 
 document.addEventListener( 'DOMContentLoaded', function() {
   // Dispatches action to show BeforeContainer (username/Play Game display)
-  store.dispatch(actions.showBeforeContainer());
+  // store.dispatch(actions.showBeforeContainer());
+  store.dispatch(actions.newGame());
   // store.dispatch(actions.fetchGameHistory('Jon'));
   ReactDOM.render(
       <Provider store={store}>
