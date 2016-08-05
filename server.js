@@ -36,6 +36,7 @@ app.post('/users', jsonParser, function(request, response) {
         .into('users')
         .then(function(id) {
             console.log('post user success');
+            console.log('username: ', username, 'id: ', id[0], 'message: ', 'Registration successful')
             return response.status(201).json({
                 username,
                 id: id[0],
@@ -57,6 +58,7 @@ app.post('/games/:userId', jsonParser, function(request, response) {
         .into('games')
         .then(function() {
             console.log('post score success');
+            console.log('userId: ', userId, 'score: ', score);
             return response.status(201).json({
                 userId,
                 score, 
@@ -79,6 +81,7 @@ app.get('/games/:username', jsonParser, function(request, response) {
         .where({username: username})
         .then(function(gameHistory) {
             console.log('get game history success');
+            console.log('gameHistory: ', gameHistory);
             return response.json(gameHistory);
         })
         .catch(function(error) {
@@ -104,7 +107,7 @@ app.get('/games/:username/highscore', jsonParser, function(request, response) {
                 });
             }
             console.log('get high score success');
-            console.log('server highscore', highScore);
+            console.log('highScore: ', highScore);
             return response.json(highScore);
         })
         .catch(function(error) {

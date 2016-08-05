@@ -234,7 +234,6 @@ var fetchGameHistory = function(username) {
             return response.json();
         })
         .then(function(gameHistory) {
-            console.log(gameHistory, 'gameHistory');
 
             return dispatch(
                 fetchGameHistorySuccess(username, gameHistory)
@@ -290,7 +289,6 @@ var fetchHighScore = function(username) {
             return response.json();
         })
         .then(function(data) {
-            console.log(data, 'data');
             var highScore = data;
             return dispatch(
                 fetchHighScoreSuccess(username, highScore)
