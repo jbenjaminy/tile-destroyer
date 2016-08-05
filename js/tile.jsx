@@ -25,7 +25,7 @@ var Tile = React.createClass({
 
 	tileTimer: function() {
 		var that = this;
-		setTimeout(function() {that.setState({ tileDisplay: null }); console.log('In Timeout new state >', that.state.tileDisplay);}, 10000); 
+		setTimeout(function() {that.setState({ tileDisplay: null });}, 10000); 
 	},
 
 	makeActive: function() {
@@ -60,11 +60,10 @@ var Tile = React.createClass({
 	},
 
 	componentWillUnmount: function() {
-		console.log('Will Unmount state >', this.state.tileDisplay);
+
 	},
 
 	render: function() {
-		console.log('renderer tile state >', this.state.tileDisplay);
 		return (
 			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick} id="box"></li>
 		);
