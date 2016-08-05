@@ -30,7 +30,7 @@ var Tile = React.createClass({
 			tileDisplay: 'active'
 		})
 		// setTimeout() : call this.makeInactive after ~ 1 sec
-		setTimeout(function() {that.makeInactive();}, 1000);
+		setTimeout(function() {that.makeInactive();}, 1300);
 	},
 
 	makeInactive: function() {
@@ -51,7 +51,7 @@ var Tile = React.createClass({
 
 	render: function() {
 		return (
-			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick}></li>
+			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick} id="box"></li>
 		);
 	}
 
