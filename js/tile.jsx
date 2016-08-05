@@ -48,7 +48,7 @@ var Tile = React.createClass({
 	componentWillMount: function() {
 		this.makeInactive();
 	},
-
+	
 	render: function() {
 		return (
 			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick} id="box"></li>
