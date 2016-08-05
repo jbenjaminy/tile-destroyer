@@ -23,6 +23,11 @@ var Tile = React.createClass({
 		};
 	},
 
+	tileTimer: function() {
+		var that = this;
+		setTimeout(function() {that.setState({ tileDisplay: null }); console.log('In Timeout new state >', that.state.tileDisplay);}, 10000); 
+	},
+
 	makeActive: function() {
 		var that = this;
 		// set state display to active
@@ -30,7 +35,9 @@ var Tile = React.createClass({
 			tileDisplay: 'active'
 		})
 		// setTimeout() : call this.makeInactive after ~ 1 sec
-		setTimeout(function() {that.makeInactive();}, 1300);
+		if (this.state.tileDisplay !== null) {
+			setTimeout(function() {that.makeInactive();}, 1300);
+		}
 	},
 
 	makeInactive: function() {
@@ -42,14 +49,22 @@ var Tile = React.createClass({
 		})
 		var that=this;
 		// setTimeout() : call makeActive after a random amount of seconds
-		setTimeout(function() {that.makeActive();}, randomSeconds)
+		if (this.state.tileDisplay !== null) {
+			setTimeout(function() {that.makeActive();}, randomSeconds)
+		}
 	},
 
 	componentWillMount: function() {
 		this.makeInactive();
+		this.tileTimer();
 	},
-	
+
+	componentWillUnmount: function() {
+		console.log('Will Unmount state >', this.state.tileDisplay);
+	},
+
 	render: function() {
+		console.log('renderer tile state >', this.state.tileDisplay);
 		return (
 			<li className={'tile ' + this.state.tileDisplay} onClick={this.onTileClick} id="box"></li>
 		);
