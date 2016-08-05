@@ -2,7 +2,11 @@
 
 This game is built using JavaScript and React/Redux framework. You can create users, keep track of highest scores, and view your game history data stored in the backend database.
 
-First, create your username before playing the game; the game begins when you click START GAME. This is a timed-game where you can break tiles and compete for the highest score. The object of the game is to click the red tiles to earn points; click as many red tiles as you can in 20 seconds. You earn a point for every direct hit, but lose two points if you miss and hit the white tiles.
+First, create your username before playing the game; the game begins when you click START GAME.
+
+![Create user name](https://github.com/jbenjaminy/fullstack-game/blob/master/img/ss2.png?raw=true "Start page")
+
+ This is a timed-game where you can break tiles and compete for the highest score. The object of the game is to click the red tiles to earn points; click as many red tiles as you can in 20 seconds. You earn a point for every direct hit, but lose two points if you miss and hit the white tiles.
 
 When the round is over, you can view your final score, score history, highest score, and choose to play again.
 
