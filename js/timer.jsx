@@ -4,6 +4,7 @@ var connect = require('react-redux').connect;
 var actions = require('./actions');
 
 var clock = '';
+var depth = 0;
 
 var Timer = React.createClass({
     onEndGame: function() {
@@ -17,6 +18,8 @@ var Timer = React.createClass({
     },
 
     timer: function() {
+      depth += 1;
+      console.log("INCREASING DEPTH TO: ", depth);
       var startTime = moment();
       var timer = setInterval(function() {
         var currentTime = moment();
@@ -30,11 +33,13 @@ var Timer = React.createClass({
       var timeout = setTimeout(function () {
         clearInterval(timer);
         that.onEndGame();
-      }, 10000 );
+        console.log("DECREASING DEPTH FROM: ", depth);
+        depth -= 1;
+      }, 20000 );
     },
 
     render: function() {
-        if (this.props.state.timer === true) {
+        if (this.props.state.timer === true && depth === 0) {
           this.timer();
         }
         return (
