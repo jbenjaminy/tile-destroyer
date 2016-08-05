@@ -79,9 +79,7 @@ var gameReducer = function(state, action) {
 	} else if (action.type === actions.SHOW_AFTER_CONTAINER) {
 		console.log(state, 'state');
 		return Object.assign({}, state, {
-			afterContainer: true,
-			showBoard: false,
-			playButton: 'PLAY AGAIN'
+			
 		});
 	} else if (action.type === actions.INCREMENT_SCORE) {
 		console.log('in increment score');
@@ -124,11 +122,15 @@ var gameReducer = function(state, action) {
 		var newStatusMessage = action.error;
 		return Object.assign({}, state, {
 			statusMessage: newStatusMessage
+
 		});
 	} else if (action.type === actions.FETCH_GAME_HISTORY_SUCCESS) {
 		var newGameHistory = action.gameHistory;
 		return Object.assign({}, state, {
-			gameHistory: newGameHistory
+			gameHistory: newGameHistory,
+			afterContainer: true,
+			showBoard: false,
+			playButton: 'PLAY AGAIN'
 		});
 	} else if (action.type === actions.FETCH_GAME_HISTORY_ERROR) {
 		var newStatusMessage = action.error;
@@ -137,13 +139,18 @@ var gameReducer = function(state, action) {
 		});
 	} else if (action.type === actions.FETCH_HIGH_SCORE_SUCCESS) {
 		var newHighScore = action.highScore;
+		console.log(action.highScore, 'action.highScore');
 		return Object.assign({}, state, {
-			highScore: newHighScore
+			highScore: newHighScore,
+			afterContainer: true,
+			showBoard: false,
+			playButton: 'PLAY AGAIN'
 		}); 
 	} else if (action.type === actions.FETCH_GAME_HISTORY_ERROR) {
 		var newStatusMessage = action.error;
 		return Object.assign({}, state, {
 			statusMessage: newStatusMessage
+
 		});
 	} else {
 		return state;

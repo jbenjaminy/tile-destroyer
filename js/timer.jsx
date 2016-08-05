@@ -8,10 +8,8 @@ var clock = '';
 var Timer = React.createClass({
     onEndGame: function() {
         this.props.dispatch(actions.timerStop());
-        this.props.dispatch(actions.fetchAddScore(this.props.state.id, this.props.state.score));
-        this.props.dispatch(actions.fetchGameHistory(this.props.state.username));
-        this.props.dispatch(actions.fetchHighScore(this.props.state.username));
-        this.props.dispatch(actions.showAfterContainer());
+        this.props.dispatch(actions.fetchAddScore(this.props.state.username, this.props.state.id, this.props.state.score));
+        // this.props.dispatch(actions.showAfterContainer());
     },
 
     updateTimer: function() {
