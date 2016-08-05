@@ -42,7 +42,6 @@ var gameReducer = function(state, action) {
 			beforeContainer: beforeContainer,
 			afterContainer: afterContainer,
 			statusMessage: statusMessage,
-			timer: timer,
 			showBoard: showBoard
 		});
 
@@ -60,13 +59,14 @@ var gameReducer = function(state, action) {
 		}
 	} else if (action.type === actions.TOGGLE_HISTORY_DISPLAY) {
 		return Object.assign({}, state, {
-			historyDisplay: !historyDisplay
+			historyDisplay: !state.historyDisplay
 		});
 	} else if (action.type === actions.SHOW_BEFORE_CONTAINER) {
 		return Object.assign({}, state, {
 			beforeContainer: true,
 			showBoard: false,
-			playButton: 'START GAME'
+			playButton: 'START GAME',
+			gameHistory: []
 		});
 	} else if (action.type === actions.HIDE_DYNAMIC_CONTAINER) {
 		return Object.assign({}, state, {
@@ -74,15 +74,13 @@ var gameReducer = function(state, action) {
 			afterContainer: false
 		});
 	} else if (action.type === actions.INCREMENT_SCORE) {
-		var newScore  = state.score + 1;
 		return Object.assign({}, state, {
-			score: newScore,
+			score: state.score + 1,
 			// timer: false
 		});
 	} else if (action.type === actions.DECREMENT_SCORE) {
-		var newScore = state.score - 2;
 		return Object.assign({}, state, {
-			score: newScore,
+			score: state.score - 2,
 			// timer: false
 		});
 	} else if (action.type === actions.TIMER_STOP) {
