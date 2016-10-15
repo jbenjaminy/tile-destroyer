@@ -1,5 +1,14 @@
 
 body {
+	/*width: 600px;*/
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	background-color: #E8E8E8;
+}
+
+ul {
 	width: 600px;
 	margin-left: auto;
 	margin-right: auto;
@@ -46,6 +55,62 @@ body {
   transform: scale(0.9);
 }
 
+.title {
+	background-color: #484848;
+	height: 6em;
+	margin-top: -1.7em;
+	margin-bottom: 2em;
+	/*background-image: url('../img/tiles.jpg');
+	background-position: 0 bottom;
+	background-size: cover;
+	background-repeat: no-repeat;
+	overflow: auto;*/
+}
+
+.title h1 {
+	/*font-family: 'Shadows Into Light', cursive;*/
+	font-family: 'Bangers', cursive;
+	padding: 1em;
+	color: white;
+	font-size: 2em;
+	letter-spacing: 0.2em;
+}
+
+button {
+	background-color: #3f729b;
+		border-radius: 4px;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.7em;
+    margin: 3px 1px;
+    cursor: pointer;
+}
+
+#player-name {
+	height: 20px;
+	text-align: center;
+}
+
+#submit-button {
+	border-radius: 4px;
+	margin: 0 2em;
+	background-color: red;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: none;
+	font-size: 0.8em;
+	padding: 5px 24px;
+	margin: 3px 1px;
+	cursor: pointer;
+
+}
+
 .before-container {
 
 }
@@ -54,10 +119,18 @@ body {
 
 }
 
+.instructions {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
 .game-history {
-
-background-color: beige;
-
+width: 600px;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
 }
 
 .hidden {

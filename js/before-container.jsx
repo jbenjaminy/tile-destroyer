@@ -15,7 +15,7 @@ var BeforeContainer = React.createClass( {
 
     return (
       <div className={classes}>
-        <h3>Enter your name and press PLAY to begin.</h3>
+        <h3>Enter your name and press START GAME to begin.</h3>
             <UsernamePrompt />
             <PlayButton text={this.props.playButton}/>
       </div>

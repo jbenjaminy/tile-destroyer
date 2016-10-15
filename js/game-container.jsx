@@ -18,8 +18,10 @@ var GameContainer = React.createClass( {
   render: function() {
 
     return (
-      <div>
+      <div className="game-container">
+        <nav className="title">
           <h1>The Ultimate Tile Destroyer</h1>
+        </nav>
           <Board render={this.props.showBoard}/>
         <div className="info-board">
           <TextContainer render={this.props.showBoard} />
