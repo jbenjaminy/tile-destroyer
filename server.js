@@ -2,11 +2,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+var databaseUrl = process.env.DATABASE_URL || 'postgres://localhost:5432/fsGame';
+if (process.env.NODE_ENV === 'production') {
+    databaseUrl += '?ssl=true';
+}
+
 var knex = require('knex')({
     client: 'pg',
-    connection: {
-        database: 'fsGame'
-    },
+    connection: databaseUrl
 });
 
 /* --------- GLOBAL VARIABLES --------- */
