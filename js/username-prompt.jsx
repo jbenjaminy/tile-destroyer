@@ -14,6 +14,7 @@ var UsernamePrompt = React.createClass ({
   render: function() {
     var status = '';
     if (this.props.statusMessage) {
+      console.log(this.props.statusMessage);
       status = this.props.statusMessage;
     };
 
