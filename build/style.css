@@ -1,0 +1,65 @@
+
+body {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.tile {
+	border: 2px solid black;
+	height: 100px;
+	width: 100px;
+	list-style-type: none;
+	display: inline-flex;
+	border-radius: 6px;
+  cursor: pointer;
+}
+
+.tile.inactive {
+	background: ghostwhite;
+	transition-property: background;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+}
+
+.tile.inactive:hover {
+	background: #D8D8D8;
+}
+
+.tile.active {
+	background: red;
+	transition-property: background;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+
+}
+
+.tile.active:hover {
+	background: #CC0000;
+}
+
+.tile.active:active {
+	background: #FF99CC;
+	-webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.before-container {
+
+}
+
+.after-container {
+
+}
+
+.game-history {
+
+background-color: beige;
+
+}
+
+.hidden {
+	display: none;
+}
