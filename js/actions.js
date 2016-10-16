@@ -84,7 +84,7 @@ var timerStop = function() {
 // POST NEW USER
 var fetchAddUser = function(usernameInput) {
     return function(dispatch) {
-        var url = 'http://localhost:8080/users';
+        var url = '/users';
         var request = {
             method: 'post',
             headers: {
@@ -145,7 +145,7 @@ var fetchAddUserError = function(usernameInput, error) {
 // POST NEW SCORE
 var fetchAddScore = function(username, userId, score) {
     return function(dispatch) {
-        var url = 'http://localhost:8080/games/' + userId;
+        var url = '/games/' + userId;
         var request = {
             method: 'post',
             headers: {
@@ -214,7 +214,7 @@ var fetchAddScoreError = function(userId, score, error) {
 // GET GAME HISTORY
 var fetchGameHistory = function(username) {
     return function(dispatch) {
-        var url = 'http://localhost:8080/games/' + username;
+        var url = '/games/' + username;
         var request = { 
                 headers: {
                     'Accept': 'application/json',
@@ -269,7 +269,7 @@ var fetchGameHistoryError = function(username, error) {
 // GET HIGH SCORE
 var fetchHighScore = function(username) {
     return function(dispatch) {
-        var url = 'http://localhost:8080/games/' + username + '/highscore';
+        var url = '/games/' + username + '/highscore';
         var request = { 
                 headers: {
                     'Accept': 'application/json',
