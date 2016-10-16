@@ -1,7 +1,7 @@
 {
   "name": "fullstack-game-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "A fullstack game made with React/Redux where the user breaks randomly-generated tiles and competes for the high-score.",
   "main": "server.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register test/**/*.js*",
@@ -28,6 +28,14 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbenjaminy/fullstack-game"
+  },
+  "bugs": {
+    "url": "https://github.com/jbenjaminy/fullstack-game/issues"
+  },
+  "homepage": "https://still-ocean-33053.herokuapp.com/",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
