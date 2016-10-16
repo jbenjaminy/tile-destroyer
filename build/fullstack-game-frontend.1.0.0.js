@@ -24197,11 +24197,15 @@
 	
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'game-container' },
 	      React.createElement(
-	        'h1',
-	        null,
-	        'The Ultimate Tile Destroyer'
+	        'nav',
+	        { className: 'title' },
+	        React.createElement(
+	          'h1',
+	          null,
+	          'The Ultimate Tile Destroyer'
+	        )
 	      ),
 	      React.createElement(Board, { render: this.props.showBoard }),
 	      React.createElement(
@@ -38594,7 +38598,7 @@
 	      React.createElement(
 	        'h3',
 	        null,
-	        'Enter your name and press PLAY to begin.'
+	        'Enter your name and press START GAME to begin.'
 	      ),
 	      React.createElement(UsernamePrompt, null),
 	      React.createElement(PlayButton, { text: this.props.playButton })
