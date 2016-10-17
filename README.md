@@ -6,17 +6,17 @@ First, create your username before playing the game; the game begins when you cl
 
 
 
-![Create user name](https://github.com/jbenjaminy/fullstack-game/blob/master/img/ss2.png?raw=true "Start page")
+![Create user name](https://github.com/jbenjaminy/fullstack-game/blob/master/img/tiles1.png?raw=true "Start page")
 
  This is a timed-game where you can break tiles and compete for the highest score. The object of the game is to click the red tiles to earn points; click as many red tiles as you can in 20 seconds.
 
-![Click the red tiles](https://github.com/jbenjaminy/fullstack-game/blob/master/img/ss4.png?raw=true "Click red tiles")
+![Click the red tiles](https://github.com/jbenjaminy/fullstack-game/blob/master/img/tiles2.png?raw=true "Click red tiles")
 
  You earn a point for every direct hit, but lose two points if you miss and hit the white tiles.
 
 When the round is over, you can view your final score, score history, highest score, and choose to play again.
 
-![Game over](https://github.com/jbenjaminy/fullstack-game/blob/master/img/ss5.png?raw=true "Game over")
+![Game over](https://github.com/jbenjaminy/fullstack-game/blob/master/img/tiles3.png?raw=true "Game over")
 
 ## Setting up the database and backend server.
 
