@@ -18,7 +18,7 @@ When the round is over, you can view your final score, score history, highest sc
 
 ![Game over](https://github.com/jbenjaminy/fullstack-game/blob/master/img/tiles3.png?raw=true "Game over")
 
-## Setting up the database and backend server.
+## Setting up the database and backend server
 
 	1. Install postgreSQL using homebrew:
 			$ brew install postgresql
@@ -39,7 +39,7 @@ When the round is over, you can view your final score, score history, highest sc
 			$ psql -d *INSERT_DB_NAME*
 
 
-## Queries for accessing the SQL database directly.
+## Queries for accessing the SQL database directly
 
 	Query examples:
 		-CREATE:
@@ -52,3 +52,11 @@ When the round is over, you can view your final score, score history, highest sc
 			$ update *INSERT_TABLE* set *INSERT_COLUMN_1*='*INSERT_VALUE_1*' where *INSERT_VALUE_2*='*INSERT_COLUMN_2*';
 		-DELETE:
 			$ delete from *INSERT_TABLE* where *INSERT_COLUMN_1*='*INSERT_VALUE_1*';
+
+## Authors
+
+* [Ben Young](https://github.com/jbenjaminy)
+
+* [Alex Bang](https://github.com/atbang)
+
+* [Eric Snell](https://github.com/EricSnell)
