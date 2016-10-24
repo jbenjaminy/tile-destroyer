@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-game-frontend",
+  "name": "tile-destroyer",
   "version": "1.0.0",
   "description": "A fullstack game made with React/Redux where the user breaks randomly-generated tiles and competes for the high-score.",
   "main": "server.js",
@@ -30,12 +30,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jbenjaminy/fullstack-game"
+    "url": "https://github.com/jbenjaminy/tile-destroyer"
   },
   "bugs": {
-    "url": "https://github.com/jbenjaminy/fullstack-game/issues"
+    "url": "https://github.com/jbenjaminy/tile-destroyer/issues"
   },
-  "homepage": "https://still-ocean-33053.herokuapp.com/",
+  "homepage": "http://tile-destroyer.jbenjaminy.com/",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
